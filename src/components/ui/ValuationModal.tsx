@@ -232,7 +232,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
             {/* Step 1: Initial popup */}
             {step === 1 && (
               <div className="text-center">
-                <h2 className="text-2xl font-semibold mb-4">Free Valuation in Under 1 Minute</h2>
+                <h2 className="text-2xl font-semibold mb-4">Claim Your Free Valuation</h2>
                 <p className="text-gray-600 mb-8">
                   We just need a few quick details about your asset to get started. It’s fast, easy, and completely free.
                 </p>
