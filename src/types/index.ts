@@ -66,4 +66,9 @@ export interface PropertyInquiryData {
   email: string;
   phone: string;
   message?: string;
+  employment_status?: 'employed' | 'unemployed';
+  current_position?: string;
+  annual_income?: number;
+  preferred_viewing_date?: Date;
+  preferred_move_date?: Date;
 }
