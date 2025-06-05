@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import Button from './Button';
+import { supabase } from '../../lib/supabase';
 
 interface ValuationModalProps {
   isOpen: boolean;
@@ -181,8 +182,22 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
     setSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Submit to Supabase
+      const { error } = await supabase
+        .from('valuation_requests')
+        .insert([{
+          type: valuationType === 'switch' ? 'sales' : valuationType,
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          postcode: formData.postcode,
+          address: '', // We'll add this later if needed
+          bedrooms: propertyTypes.length > 0 ? propertyTypes.join(', ') : 'Not specified',
+          comments: ''
+        }]);
+
+      if (error) throw error;
+      
       setSubmitted(true);
       setStep(8); // Move to confirmation step
     } catch (error) {
