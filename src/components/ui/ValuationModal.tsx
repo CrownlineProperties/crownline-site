@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Menu, X, ChevronDown, Crown } from 'lucide-react';
 import Button from './Button';
 import { supabase } from '../../lib/supabase';
 
@@ -139,11 +140,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
 
   const handlePostcodeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Mark postcode as touched
     touch('postcode');
-    
-    // Then validate
     if (isValidPostcode(formData.postcode)) {
       nextStep();
     }
@@ -151,9 +148,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
 
   const handleNameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     touch('fullName');
-    
     if (isValidName(formData.fullName)) {
       nextStep();
     }
@@ -161,9 +156,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     touch('email');
-    
     if (isValidEmail(formData.email)) {
       nextStep();
     }
@@ -171,8 +164,6 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Final validation
     touch('phone');
     
     if (!isValidPhone(formData.phone)) {
@@ -182,7 +173,6 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
     setSubmitting(true);
     
     try {
-      // Submit to Supabase
       const { error } = await supabase
         .from('valuation_requests')
         .insert([{
@@ -191,7 +181,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
           email: formData.email,
           phone: formData.phone,
           postcode: formData.postcode,
-          address: '', // We'll add this later if needed
+          address: formData.postcode, // Using postcode as address for now
           bedrooms: propertyTypes.length > 0 ? propertyTypes.join(', ') : 'Not specified',
           comments: ''
         }]);
@@ -234,7 +224,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
               <div className="text-center">
                 <h2 className="text-2xl font-semibold mb-4">Claim Your Free Valuation</h2>
                 <p className="text-gray-600 mb-8">
-                  We just need a few quick details about your asset to get started. It’s fast, easy, and completely free.
+                  We just need a few quick details about your asset to get started. It's fast, easy, and completely free.
                 </p>
                 <Button 
                   variant="primary" 
