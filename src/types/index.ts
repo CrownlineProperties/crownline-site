@@ -57,3 +57,13 @@ export interface ViewingRequestData {
   phone: string;
   message?: string;
 }
+
+export interface PropertyInquiryData {
+  type: 'rent' | 'buy';
+  property_id: string;
+  property_title: string;
+  name: string;
+  email: string;
+  phone: string;
+  message?: string;
+}

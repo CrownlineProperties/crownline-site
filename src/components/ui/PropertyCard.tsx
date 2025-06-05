@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bed, Bath, MapPin, ArrowRight, Home } from 'lucide-react';
 import { Property } from '../../types';
 import { formatPrice } from '../../utils/formatters';
+import { supabase } from '../../lib/supabase';
 
 interface PropertyCardProps {
   property: Property;
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
   const {
+    id,
     slug,
     title,
     area,
@@ -18,6 +31,36 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
     thumb,
     listingType,
   } = property;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('property_inquiries')
+        .insert([{
+          type: listingType === 'sale' ? 'buy' : 'rent',
+          property_id: id,
+          property_title: title,
+          ...formData
+        }]);
+
+      if (error) throw error;
+      
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      console.error('Error submitting inquiry:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="card group overflow-hidden transition-all duration-300 hover:shadow-md">
@@ -60,14 +103,102 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             </div>
           </div>
         </div>
-        
-        <Link 
-          to={`/property/${slug}`} 
-          className="text-navy font-medium flex items-center hover:text-gold transition duration-300"
-        >
-          View details
-          <ArrowRight size={16} className="ml-1" />
-        </Link>
+
+        <div className="flex flex-col gap-4">
+          <Link 
+            to={`/property/${slug}`} 
+            className="text-navy font-medium flex items-center hover:text-gold transition duration-300"
+          >
+            View details
+            <ArrowRight size={16} className="ml-1" />
+          </Link>
+
+          <button
+            onClick={() => setShowForm(true)}
+            className="text-navy font-medium hover:text-gold transition duration-300"
+          >
+            Request details
+          </button>
+        </div>
+
+        {/* Inquiry Form */}
+        {showForm && !isSubmitted && (
+          <div className="mt-4 pt-4 border-t">
+            <h4 className="font-semibold mb-4">Request Property Details</h4>
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Your name"
+                    className="form-input w-full"
+                    required
+                    minLength={2}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Your email"
+                    className="form-input w-full"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Your phone"
+                    className="form-input w-full"
+                    required
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Your message (optional)"
+                    className="form-input w-full"
+                    rows={3}
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="btn-primary w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Request'}
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* Success Message */}
+        {isSubmitted && (
+          <div className="mt-4 pt-4 border-t text-center">
+            <div className="text-green-600 mb-2">✓</div>
+            <p className="text-gray-700">Thank you for your interest! We'll be in touch shortly.</p>
+            <button
+              onClick={() => {
+                setIsSubmitted(false);
+                setShowForm(false);
+              }}
+              className="text-navy hover:text-gold transition duration-300 mt-2"
+            >
+              Send another request
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
