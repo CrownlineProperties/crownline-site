@@ -1,0 +1,44 @@
+[
+  {
+    "id": "t1",
+    "name": "James Wilson",
+    "photo": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "Crownline helped me find the perfect apartment in Camden. Their team was incredibly responsive and made the whole process seamless from viewing to move-in day.",
+    "service": "tenant"
+  },
+  {
+    "id": "t2",
+    "name": "Sophie Chen",
+    "photo": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "As an overseas investor, I was concerned about managing properties in London. Crownline's Mandarin-speaking team and their property management service have been invaluable.",
+    "service": "landlord"
+  },
+  {
+    "id": "t3",
+    "name": "Robert Taylor",
+    "photo": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "I sold my Kensington flat through Crownline and was impressed by their market knowledge and negotiation skills. They secured a price well above my expectations.",
+    "service": "seller"
+  },
+  {
+    "id": "t4",
+    "name": "Emma Johnson",
+    "photo": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "Crownline found us our dream family home in Fulham. Their attention to detail and understanding of our specific requirements made all the difference.",
+    "service": "buyer"
+  },
+  {
+    "id": "t5",
+    "name": "Wei Zhang",
+    "photo": "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "Managing my London investment properties from Hong Kong was challenging until I partnered with Crownline. Their international landlord services are exceptional.",
+    "service": "landlord"
+  },
+  {
+    "id": "t6",
+    "name": "Sarah Miller",
+    "photo": "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "quote": "As a first-time tenant in London, Crownline guided me through every step of the process. Their team was patient, professional, and found me a beautiful flat in Shoreditch.",
+    "service": "tenant"
+  }
+]

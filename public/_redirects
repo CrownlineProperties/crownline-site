@@ -1,0 +1,20 @@
+# Redirects from legacy property URLs to new slug-based URLs
+/property/prop-s-001 /property/sales001 301
+/property/prop-s-002 /property/sales002 301
+/property/prop-s-003 /property/sales003 301
+/property/prop-s-004 /property/sales004 301
+/property/prop-s-005 /property/sales005 301
+/property/prop-s-006 /property/sales006 301
+/property/prop-s-007 /property/sales007 301
+/property/prop-s-008 /property/sales008 301
+/property/prop-r-001 /property/rent001 301
+/property/prop-r-002 /property/rent002 301
+/property/prop-r-003 /property/rent003 301
+/property/prop-r-004 /property/rent004 301
+/property/prop-r-005 /property/rent005 301
+/property/prop-r-006 /property/rent006 301
+/property/prop-r-007 /property/rent007 301
+/property/prop-r-008 /property/rent008 301
+
+# Fallback redirect for any other pages
+/* /index.html 200
