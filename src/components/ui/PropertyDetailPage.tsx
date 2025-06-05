@@ -118,7 +118,7 @@ const PropertyDetailPage = () => {
       return (
         <>
           <div className="mb-4">
-            <label htmlFor="name\" className="form-label">Full Name</label>
+            <label htmlFor="name\" className=\"form-label">Full Name</label>
             <input
               type="text"
               id="name"
