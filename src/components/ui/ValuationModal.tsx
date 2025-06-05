@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Crown } from 'lucide-react';
+import { X } from 'lucide-react';
 import Button from './Button';
 import { supabase } from '../../lib/supabase';
 
@@ -33,7 +32,7 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
     phone: '',
   });
 
-  // Helper functions for validation - pure functions with no side effects
+  // Helper functions for validation
   const touch = (field: keyof typeof touched) =>
     setTouched(prev => ({ ...prev, [field]: true }));
 
@@ -60,7 +59,6 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
   // Trap focus in modal when open
   useEffect(() => {
     if (isOpen) {
-      // Disable scrolling on body
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -174,22 +172,20 @@ const ValuationModal: React.FC<ValuationModalProps> = ({ isOpen, onClose }) => {
     
     try {
       const { error } = await supabase
-        .from('valuation_requests')
+        .from('booking_valuations')
         .insert([{
-          type: valuationType === 'switch' ? 'sales' : valuationType,
+          type: valuationType,
           name: formData.fullName,
           email: formData.email,
           phone: formData.phone,
           postcode: formData.postcode,
-          address: formData.postcode, // Using postcode as address for now
-          bedrooms: propertyTypes.length > 0 ? propertyTypes.join(', ') : 'Not specified',
-          comments: ''
+          property_types: propertyTypes
         }]);
 
       if (error) throw error;
       
       setSubmitted(true);
-      setStep(8); // Move to confirmation step
+      setStep(8);
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
