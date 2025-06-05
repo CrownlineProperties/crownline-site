@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Button from './Button';
+import { supabase } from '../../lib/supabase';
+import type { ValuationFormData } from '../../types';
 
 interface ValuationFormProps {
   type: 'sales' | 'rental';
@@ -8,7 +10,8 @@ interface ValuationFormProps {
 }
 
 const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ValuationFormData>({
+    type,
     name: '',
     email: '',
     phone: '',
@@ -20,6 +23,7 @@ const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,12 +33,18 @@ const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const { error: supabaseError } = await supabase
+        .from('valuation_requests')
+        .insert([formData]);
+
+      if (supabaseError) throw supabaseError;
+      
       setIsSubmitted(true);
       setFormData({
+        type,
         name: '',
         email: '',
         phone: '',
@@ -43,8 +53,9 @@ const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
         address: '',
         comments: '',
       });
-    } catch (error) {
-      console.error('Error submitting form:', error);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('There was an error submitting your valuation request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -54,6 +65,12 @@ const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
     <div className="card">
       {title && <h2 className="text-2xl font-semibold mb-2">{title}</h2>}
       {subtitle && <p className="text-gray-600 mb-6">{subtitle}</p>}
+      
+      {error && (
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+          {error}
+        </div>
+      )}
       
       {isSubmitted ? (
         <div className="text-center py-8">
@@ -101,6 +118,7 @@ const ValuationForm = ({ type, title, subtitle }: ValuationFormProps) => {
                 className="form-input"
                 placeholder="Your name"
                 required
+                minLength={2}
               />
             </div>
             <div>

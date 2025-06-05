@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Button from './Button';
+import { supabase } from '../../lib/supabase';
+import type { ContactFormData } from '../../types';
 
 interface ContactFormProps {
   title?: string;
@@ -8,7 +10,7 @@ interface ContactFormProps {
 }
 
 const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     phone: '',
@@ -17,6 +19,7 @@ const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -26,10 +29,14 @@ const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const { error: supabaseError } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
+      if (supabaseError) throw supabaseError;
       
       if (onSubmit) {
         const data = new FormData();
@@ -41,8 +48,9 @@ const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
       
       setIsSubmitted(true);
       setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
-      console.error('Error submitting form:', error);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('There was an error submitting your message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -52,6 +60,12 @@ const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
     <div className="card">
       {title && <h2 className="text-2xl font-semibold mb-2">{title}</h2>}
       {subtitle && <p className="text-gray-600 mb-6">{subtitle}</p>}
+      
+      {error && (
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+          {error}
+        </div>
+      )}
       
       {isSubmitted ? (
         <div className="text-center py-8">
@@ -98,6 +112,7 @@ const ContactForm = ({ title, subtitle, onSubmit }: ContactFormProps) => {
               className="form-input"
               placeholder="Your name"
               required
+              minLength={2}
             />
           </div>
           <div className="mb-4">

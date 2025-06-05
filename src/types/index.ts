@@ -30,3 +30,30 @@ export interface NavItem {
   path: string;
   children?: NavItem[];
 }
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+export interface ValuationFormData {
+  type: 'sales' | 'rental';
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  address: string;
+  bedrooms: string;
+  comments?: string;
+}
+
+export interface ViewingRequestData {
+  property_id: string;
+  property_title: string;
+  name: string;
+  email: string;
+  phone: string;
+  message?: string;
+}
