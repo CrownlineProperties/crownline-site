@@ -1,17 +1,29 @@
-import { useEffect, useState } from 'react';
 import Hero from '../components/ui/Hero';
 import PropertyGrid from '../components/ui/PropertyGrid';
-import { Property } from '../types';
-
-import propertyData from '../data/listings.json';
+import { useProperties } from '../hooks/useProperties';
 
 const RentPage = () => {
-  const [rentalProperties, setRentalProperties] = useState<Property[]>([]);
+  const { properties, loading } = useProperties('rent');
 
-  useEffect(() => {
-    const rentals = (propertyData as Property[]).filter(p => p.listingType === 'rent');
-    setRentalProperties(rentals);
-  }, []);
+  // Convert PropertyData to Property format for compatibility
+  const convertedProperties = properties.map(p => ({
+    id: p.id || '',
+    slug: p.slug,
+    listingType: p.listing_type as 'rent' | 'sale',
+    title: p.title,
+    area: p.area,
+    price: p.price,
+    beds: p.beds,
+    baths: p.baths,
+    thumb: p.thumb,
+    gallery: p.gallery,
+    description: p.description,
+    mapLatLng: [51.5074, -0.1278] as [number, number], // Default London coordinates
+    features: p.features,
+    floorSize: p.floor_size,
+    dateAvailable: p.date_available,
+    furnished: p.furnished,
+  }));
 
   return (
     <div>
@@ -24,11 +36,17 @@ const RentPage = () => {
 
       <section className="section bg-white">
         <div className="container-custom">
-          <PropertyGrid
-            properties={rentalProperties}
-            title="Properties Available to Rent"
-            subtitle="All our rental properties are professionally managed and maintained to the highest standards"
-          />
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy"></div>
+            </div>
+          ) : (
+            <PropertyGrid
+              properties={convertedProperties}
+              title="Properties Available to Rent"
+              subtitle="All our rental properties are professionally managed and maintained to the highest standards"
+            />
+          )}
         </div>
       </section>
     </div>

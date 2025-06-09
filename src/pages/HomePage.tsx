@@ -7,30 +7,53 @@ import PropertyGrid from '../components/ui/PropertyGrid';
 import TestimonialCarousel from '../components/ui/TestimonialCarousel';
 import ValuationModal from '../components/ui/ValuationModal';
 import { Property, Testimonial } from '../types';
+import { useProperties } from '../hooks/useProperties';
 
-import propertyData from '../data/listings.json';
 import testimonialData from '../data/testimonials.json';
 
 const HomePage = () => {
+  const { properties: allProperties, loading } = useProperties();
   const [featuredSales, setFeaturedSales] = useState<Property[]>([]);
   const [featuredRentals, setFeaturedRentals] = useState<Property[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isValuationModalOpen, setIsValuationModalOpen] = useState(false);
 
   useEffect(() => {
-    // Get featured properties (just grabbing first 3 of each type for demo)
-    const sales = (propertyData as Property[])
-      .filter(p => p.listingType === 'sale')
-      .slice(0, 3);
+    if (!loading && allProperties.length > 0) {
+      // Convert PropertyData to Property format for compatibility
+      const convertedProperties = allProperties.map(p => ({
+        id: p.id || '',
+        slug: p.slug,
+        listingType: p.listing_type,
+        title: p.title,
+        area: p.area,
+        price: p.price,
+        beds: p.beds,
+        baths: p.baths,
+        thumb: p.thumb,
+        gallery: p.gallery,
+        description: p.description,
+        mapLatLng: [51.5074, -0.1278] as [number, number], // Default London coordinates
+        features: p.features,
+        floorSize: p.floor_size,
+        dateAvailable: p.date_available,
+        furnished: p.furnished,
+      }));
+
+      const sales = convertedProperties
+        .filter(p => p.listingType === 'sale')
+        .slice(0, 3);
+      
+      const rentals = convertedProperties
+        .filter(p => p.listingType === 'rent')
+        .slice(0, 3);
+      
+      setFeaturedSales(sales);
+      setFeaturedRentals(rentals);
+    }
     
-    const rentals = (propertyData as Property[])
-      .filter(p => p.listingType === 'rent')
-      .slice(0, 3);
-    
-    setFeaturedSales(sales);
-    setFeaturedRentals(rentals);
     setTestimonials(testimonialData as Testimonial[]);
-  }, []);
+  }, [allProperties, loading]);
 
   const openValuationModal = () => {
     setIsValuationModalOpen(true);
@@ -166,27 +189,33 @@ const HomePage = () => {
         <div className="container-custom">
           <h2 className="section-title text-center mb-12">Featured Properties</h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Properties for Sale</h3>
-              <PropertyGrid properties={featuredSales} />
-              <div className="mt-8 text-center">
-                <Button href="/buy" variant="outline">
-                  View All Properties for Sale
-                </Button>
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Properties for Sale</h3>
+                <PropertyGrid properties={featuredSales} />
+                <div className="mt-8 text-center">
+                  <Button href="/buy" variant="outline">
+                    View All Properties for Sale
+                  </Button>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Properties to Rent</h3>
+                <PropertyGrid properties={featuredRentals} />
+                <div className="mt-8 text-center">
+                  <Button href="/rent" variant="outline">
+                    View All Properties to Rent
+                  </Button>
+                </div>
               </div>
             </div>
-            
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Properties to Rent</h3>
-              <PropertyGrid properties={featuredRentals} />
-              <div className="mt-8 text-center">
-                <Button href="/rent" variant="outline">
-                  View All Properties to Rent
-                </Button>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
