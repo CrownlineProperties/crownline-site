@@ -13,6 +13,7 @@ const PropertyDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [property, setProperty] = useState<PropertyData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const swiperRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -24,11 +25,25 @@ const PropertyDetailPage = () => {
   const loadProperty = async () => {
     try {
       setLoading(true);
-      const properties = await propertyService.getAllProperties();
-      const foundProperty = properties.find(p => p.slug === slug) || null;
+      setError(null);
+      
+      // Try to get property by slug first
+      let foundProperty = await propertyService.getPropertyBySlug(slug!);
+      
+      // If not found by slug, try to get all properties and find by slug
+      if (!foundProperty) {
+        const allProperties = await propertyService.getAllProperties();
+        foundProperty = allProperties.find(p => p.slug === slug) || null;
+      }
+      
       setProperty(foundProperty);
-    } catch (error) {
-      console.error('Error loading property:', error);
+      
+      if (!foundProperty) {
+        setError('Property not found');
+      }
+    } catch (err) {
+      console.error('Error loading property:', err);
+      setError('Failed to load property');
     } finally {
       setLoading(false);
     }
@@ -37,7 +52,7 @@ const PropertyDetailPage = () => {
   useEffect(() => {
     const swiperContainer = swiperRef.current;
     
-    if (!swiperContainer) return;
+    if (!swiperContainer || !property) return;
     
     Object.assign(swiperContainer, {
       slidesPerView: 1,
@@ -53,19 +68,17 @@ const PropertyDetailPage = () => {
   if (loading) {
     return (
       <div className="container-custom py-32 text-center">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/2 mx-auto mb-4"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/3 mx-auto"></div>
-        </div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy mx-auto mb-4"></div>
+        <p>Loading property...</p>
       </div>
     );
   }
 
-  if (!property) {
+  if (error || !property) {
     return (
       <div className="container-custom py-32 text-center">
         <h1 className="text-3xl font-bold mb-4">Property Not Found</h1>
-        <p className="mb-8">The property you're looking for doesn't exist or has been removed.</p>
+        <p className="mb-8">{error || "The property you're looking for doesn't exist or has been removed."}</p>
         <Link to="/" className="btn-primary">
           Return Home
         </Link>
@@ -133,7 +146,7 @@ const PropertyDetailPage = () => {
       <div className="container-custom mb-12">
         <div className="bg-gray-100 rounded-property overflow-hidden">
           <swiper-container ref={swiperRef} init="false" class="h-[300px] md:h-[500px]">
-            {gallery.map((image, index) => (
+            {gallery && gallery.length > 0 ? gallery.map((image, index) => (
               <swiper-slide key={index}>
                 <img
                   src={image}
@@ -141,7 +154,15 @@ const PropertyDetailPage = () => {
                   className="w-full h-full object-cover"
                 />
               </swiper-slide>
-            ))}
+            )) : (
+              <swiper-slide>
+                <img
+                  src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt={title}
+                  className="w-full h-full object-cover"
+                />
+              </swiper-slide>
+            )}
           </swiper-container>
         </div>
       </div>
