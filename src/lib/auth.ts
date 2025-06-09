@@ -1,5 +1,3 @@
-import { supabase } from './supabase';
-
 export interface AdminUser {
   id: string;
   email: string;
@@ -9,53 +7,16 @@ export interface AdminUser {
 export const adminAuth = {
   async signIn(email: string, password: string): Promise<{ user: AdminUser | null; error: string | null }> {
     try {
-      // For demo purposes, we'll use a simple check and then sign in with Supabase
+      // Simple password check for demo - just like your previous working site
       if (email === 'admin@crownline.co.uk' && password === 'admin123') {
-        // Sign in with Supabase using the admin email
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: email,
-          password: 'admin123' // In production, this would be a proper hashed password
-        });
-
-        if (error) {
-          // If the user doesn't exist in Supabase auth, create them
-          if (error.message.includes('Invalid login credentials')) {
-            const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-              email: email,
-              password: 'admin123'
-            });
-
-            if (signUpError) {
-              return { user: null, error: signUpError.message };
-            }
-
-            // After signup, sign in again
-            const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
-              email: email,
-              password: 'admin123'
-            });
-
-            if (signInError) {
-              return { user: null, error: signInError.message };
-            }
-
-            const user: AdminUser = {
-              id: signInData.user?.id || '1',
-              email: email,
-              created_at: new Date().toISOString()
-            };
-
-            return { user, error: null };
-          }
-          return { user: null, error: error.message };
-        }
-
         const user: AdminUser = {
-          id: data.user?.id || '1',
-          email: email,
+          id: '1',
+          email: 'admin@crownline.co.uk',
           created_at: new Date().toISOString()
         };
-
+        
+        // Store in localStorage for demo
+        localStorage.setItem('admin_user', JSON.stringify(user));
         return { user, error: null };
       }
       
@@ -66,29 +27,19 @@ export const adminAuth = {
   },
 
   async signOut(): Promise<void> {
-    await supabase.auth.signOut();
+    localStorage.removeItem('admin_user');
   },
 
-  async getCurrentUser(): Promise<AdminUser | null> {
+  getCurrentUser(): AdminUser | null {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (user && user.email === 'admin@crownline.co.uk') {
-        return {
-          id: user.id,
-          email: user.email,
-          created_at: user.created_at || new Date().toISOString()
-        };
-      }
-      
-      return null;
+      const stored = localStorage.getItem('admin_user');
+      return stored ? JSON.parse(stored) : null;
     } catch {
       return null;
     }
   },
 
-  async isAuthenticated(): Promise<boolean> {
-    const user = await this.getCurrentUser();
-    return user !== null;
+  isAuthenticated(): boolean {
+    return this.getCurrentUser() !== null;
   }
 };
