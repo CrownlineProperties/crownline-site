@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { adminSupabase } from './supabase';
 
 export interface PropertyData {
   id?: string;
@@ -20,7 +20,7 @@ export interface PropertyData {
 
 export const propertyService = {
   async getAllProperties(): Promise<PropertyData[]> {
-    const { data, error } = await supabase
+    const { data, error } = await adminSupabase
       .from('properties')
       .select('*')
       .order('created_at', { ascending: false });
@@ -30,7 +30,7 @@ export const propertyService = {
   },
 
   async getProperty(id: string): Promise<PropertyData | null> {
-    const { data, error } = await supabase
+    const { data, error } = await adminSupabase
       .from('properties')
       .select('*')
       .eq('id', id)
@@ -41,9 +41,7 @@ export const propertyService = {
   },
 
   async createProperty(property: Omit<PropertyData, 'id'>): Promise<PropertyData> {
-    // For demo purposes, we'll bypass RLS by using the service role key
-    // In production, you'd want proper authentication
-    const { data, error } = await supabase
+    const { data, error } = await adminSupabase
       .from('properties')
       .insert([property])
       .select()
@@ -71,7 +69,7 @@ export const propertyService = {
   },
 
   async updateProperty(id: string, property: Partial<PropertyData>): Promise<PropertyData> {
-    const { data, error } = await supabase
+    const { data, error } = await adminSupabase
       .from('properties')
       .update(property)
       .eq('id', id)
@@ -94,7 +92,7 @@ export const propertyService = {
   },
 
   async deleteProperty(id: string): Promise<void> {
-    const { error } = await supabase
+    const { error } = await adminSupabase
       .from('properties')
       .delete()
       .eq('id', id);
@@ -109,7 +107,7 @@ export const propertyService = {
   },
 
   async getPropertiesByType(type: 'rent' | 'sale'): Promise<PropertyData[]> {
-    const { data, error } = await supabase
+    const { data, error } = await adminSupabase
       .from('properties')
       .select('*')
       .eq('listing_type', type)
