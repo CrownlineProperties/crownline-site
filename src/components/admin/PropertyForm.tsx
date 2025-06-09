@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Minus, Save, ArrowLeft } from 'lucide-react';
+import { Save, ArrowLeft } from 'lucide-react';
 import Button from '../ui/Button';
+import ImageUpload from './ImageUpload';
 import { PropertyData, propertyService } from '../../lib/properties';
 
 interface PropertyFormProps {
@@ -23,7 +24,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
     beds: 1,
     baths: 1,
     thumb: '',
-    gallery: [''],
+    gallery: [],
     description: '',
     features: [''],
     floor_size: 0,
@@ -51,7 +52,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
           beds: property.beds,
           baths: property.baths,
           thumb: property.thumb,
-          gallery: property.gallery.length > 0 ? property.gallery : [''],
+          gallery: property.gallery.length > 0 ? property.gallery : [],
           description: property.description,
           features: property.features.length > 0 ? property.features : [''],
           floor_size: property.floor_size || 0,
@@ -72,10 +73,18 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
     setError(null);
 
     try {
+      // Validate that at least one image is uploaded
+      if (formData.gallery.length === 0) {
+        setError('Please upload at least one image');
+        setLoading(false);
+        return;
+      }
+
       // Clean up data
       const cleanData = {
         ...formData,
-        gallery: formData.gallery.filter(url => url.trim() !== ''),
+        thumb: formData.gallery[0], // Use first image as thumbnail
+        gallery: formData.gallery,
         features: formData.features.filter(feature => feature.trim() !== ''),
         floor_size: formData.floor_size || undefined,
         date_available: formData.date_available || undefined,
@@ -105,24 +114,32 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
     }));
   };
 
-  const handleArrayChange = (index: number, value: string, field: 'gallery' | 'features') => {
+  const handleImagesChange = (images: string[]) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].map((item, i) => i === index ? value : item)
+      gallery: images,
+      thumb: images[0] || '' // Update thumbnail to first image
     }));
   };
 
-  const addArrayItem = (field: 'gallery' | 'features') => {
+  const handleFeatureChange = (index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...prev[field], '']
+      features: prev.features.map((item, i) => i === index ? value : item)
     }));
   };
 
-  const removeArrayItem = (index: number, field: 'gallery' | 'features') => {
+  const addFeature = () => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+      features: [...prev.features, '']
+    }));
+  };
+
+  const removeFeature = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      features: prev.features.filter((_, i) => i !== index)
     }));
   };
 
@@ -303,54 +320,13 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
         </div>
 
         <div className="card">
-          <h2 className="text-xl font-semibold mb-6">Images</h2>
-          
-          <div className="mb-6">
-            <label htmlFor="thumb" className="form-label">Thumbnail Image URL</label>
-            <input
-              type="url"
-              id="thumb"
-              name="thumb"
-              value={formData.thumb}
-              onChange={handleInputChange}
-              className="form-input"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="form-label">Gallery Images</label>
-            {formData.gallery.map((url, index) => (
-              <div key={index} className="flex items-center space-x-2 mb-2">
-                <input
-                  type="url"
-                  value={url}
-                  onChange={(e) => handleArrayChange(index, e.target.value, 'gallery')}
-                  className="form-input flex-1"
-                  placeholder="Image URL"
-                />
-                {formData.gallery.length > 1 && (
-                  <Button
-                    type="button"
-                    onClick={() => removeArrayItem(index, 'gallery')}
-                    variant="outline"
-                    className="p-2"
-                  >
-                    <Minus size={16} />
-                  </Button>
-                )}
-              </div>
-            ))}
-            <Button
-              type="button"
-              onClick={() => addArrayItem('gallery')}
-              variant="outline"
-              className="mt-2"
-            >
-              <Plus size={16} className="mr-2" />
-              Add Image
-            </Button>
-          </div>
+          <h2 className="text-xl font-semibold mb-6">Property Images</h2>
+          <ImageUpload
+            images={formData.gallery}
+            onImagesChange={handleImagesChange}
+            maxImages={10}
+            label="Upload Property Images"
+          />
         </div>
 
         <div className="card">
@@ -375,29 +351,28 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
                 <input
                   type="text"
                   value={feature}
-                  onChange={(e) => handleArrayChange(index, e.target.value, 'features')}
+                  onChange={(e) => handleFeatureChange(index, e.target.value)}
                   className="form-input flex-1"
                   placeholder="Feature"
                 />
                 {formData.features.length > 1 && (
                   <Button
                     type="button"
-                    onClick={() => removeArrayItem(index, 'features')}
+                    onClick={() => removeFeature(index)}
                     variant="outline"
-                    className="p-2"
+                    className="p-2 text-red-600 hover:bg-red-50"
                   >
-                    <Minus size={16} />
+                    Remove
                   </Button>
                 )}
               </div>
             ))}
             <Button
               type="button"
-              onClick={() => addArrayItem('features')}
+              onClick={addFeature}
               variant="outline"
               className="mt-2"
             >
-              <Plus size={16} className="mr-2" />
               Add Feature
             </Button>
           </div>
