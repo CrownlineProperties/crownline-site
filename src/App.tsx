@@ -16,7 +16,6 @@ import PropertyDetailPage from './pages/PropertyDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Admin Pages
-import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminPropertyFormPage from './pages/admin/AdminPropertyFormPage';
 
@@ -24,7 +23,6 @@ function App() {
   return (
     <Routes>
       {/* Admin Routes */}
-      <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />
       <Route path="/admin/properties/new" element={<AdminPropertyFormPage />} />
       <Route path="/admin/properties/:id/edit" element={<AdminPropertyFormPage />} />

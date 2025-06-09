@@ -5,10 +5,10 @@ export interface AdminUser {
 }
 
 export const adminAuth = {
-  async signIn(email: string, password: string): Promise<{ user: AdminUser | null; error: string | null }> {
+  async signIn(password: string): Promise<{ user: AdminUser | null; error: string | null }> {
     try {
       // Simple password check for demo - just like your previous working site
-      if (email === 'admin@crownline.co.uk' && password === 'admin123') {
+      if (password === 'admin123') {
         const user: AdminUser = {
           id: '1',
           email: 'admin@crownline.co.uk',
@@ -20,7 +20,7 @@ export const adminAuth = {
         return { user, error: null };
       }
       
-      return { user: null, error: 'Invalid credentials' };
+      return { user: null, error: 'Invalid password' };
     } catch (error) {
       return { user: null, error: 'Authentication failed' };
     }
