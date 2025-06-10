@@ -337,7 +337,7 @@ const LandlordsManagementPage = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">What are your management fees?</h3>
                   <p className="text-gray-600">
-                    Our standard management fee is 15% of the monthly rent, with discounts available for multiple properties. This covers all our core management services, with optional add-ons available for specialized requirements.
+                    Our standard management fee is 15% of the monthly rent, with discounts available for multiple properties. This covers all our core management services, with optional add-ons available for specialised requirements.
                   </p>
                 </div>
                 
