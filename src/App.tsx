@@ -15,6 +15,7 @@ import SellingProcessPage from './pages/SellingProcessPage';
 import PropertyDetailPage from './pages/PropertyDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import DataProtectionPage from './pages/DataProtectionPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Admin Pages
@@ -52,6 +53,7 @@ function App() {
         <Route path="property/:slug" element={<PropertyDetailPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="data-protection" element={<DataProtectionPage />} />
+        <Route path="terms-conditions" element={<TermsConditionsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
