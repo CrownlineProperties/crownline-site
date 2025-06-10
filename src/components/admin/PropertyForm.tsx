@@ -14,6 +14,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [initialLoading, setInitialLoading] = useState(isEdit);
   
   const [formData, setFormData] = useState<Omit<PropertyData, 'id'>>({
     slug: '',
@@ -40,9 +41,14 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
 
   const loadProperty = async () => {
     try {
-      setLoading(true);
+      setInitialLoading(true);
+      setError(null);
+      
+      console.log('Loading property for edit:', propertyId);
       const property = await propertyService.getProperty(propertyId!);
+      
       if (property) {
+        console.log('Loaded property:', property);
         setFormData({
           slug: property.slug,
           listing_type: property.listing_type,
@@ -59,11 +65,14 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
           date_available: property.date_available || '',
           furnished: property.furnished || false,
         });
+      } else {
+        setError('Property not found');
       }
     } catch (err) {
+      console.error('Error loading property:', err);
       setError('Failed to load property');
     } finally {
-      setLoading(false);
+      setInitialLoading(false);
     }
   };
 
@@ -90,15 +99,20 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
         date_available: formData.date_available || undefined,
       };
 
+      console.log('Submitting form data:', cleanData);
+
       if (isEdit && propertyId) {
+        console.log('Updating property with ID:', propertyId);
         await propertyService.updateProperty(propertyId, cleanData);
       } else {
+        console.log('Creating new property');
         await propertyService.createProperty(cleanData);
       }
 
       navigate('/admin');
-    } catch (err) {
-      setError(isEdit ? 'Failed to update property' : 'Failed to create property');
+    } catch (err: any) {
+      console.error('Form submission error:', err);
+      setError(err.message || (isEdit ? 'Failed to update property' : 'Failed to create property'));
     } finally {
       setLoading(false);
     }
@@ -143,7 +157,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
     }));
   };
 
-  if (loading && isEdit) {
+  if (initialLoading) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy"></div>

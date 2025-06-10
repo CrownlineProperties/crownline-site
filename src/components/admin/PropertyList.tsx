@@ -18,9 +18,12 @@ const PropertyList = () => {
   const loadProperties = async () => {
     try {
       setLoading(true);
+      setError(null);
       const data = await propertyService.getAllProperties();
+      console.log('Loaded properties:', data);
       setProperties(data);
     } catch (err) {
+      console.error('Error loading properties:', err);
       setError('Failed to load properties');
     } finally {
       setLoading(false);
@@ -32,8 +35,9 @@ const PropertyList = () => {
       try {
         await propertyService.deleteProperty(id);
         setProperties(prev => prev.filter(p => p.id !== id));
-      } catch (err) {
-        setError('Failed to delete property');
+      } catch (err: any) {
+        console.error('Error deleting property:', err);
+        setError(err.message || 'Failed to delete property');
       }
     }
   };
@@ -64,6 +68,12 @@ const PropertyList = () => {
       {error && (
         <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
           {error}
+          <button 
+            onClick={() => setError(null)}
+            className="ml-2 text-red-800 hover:text-red-900"
+          >
+            ×
+          </button>
         </div>
       )}
 
@@ -115,9 +125,13 @@ const PropertyList = () => {
             <div key={property.id} className="card hover:shadow-md transition-all duration-300">
               <div className="relative h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-property">
                 <img
-                  src={property.thumb}
+                  src={property.thumb || property.gallery?.[0] || 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
                   alt={property.title}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+                  }}
                 />
                 <div className="absolute top-3 left-3">
                   <span className="bg-navy text-white text-xs px-3 py-1 rounded-full uppercase">
