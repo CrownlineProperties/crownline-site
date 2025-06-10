@@ -38,7 +38,7 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <p className="text-gray-600">
-                      <a href="tel:02038878100" className="hover:text-gold transition duration-300">
+                      <a href="tel:020 3489 2040" className="hover:text-gold transition duration-300">
                         020 3489 2040
                       </a>
                     </p>
