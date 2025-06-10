@@ -50,7 +50,7 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
                     <p className="text-gray-600">
-                      <a href="mailto:info@crownline.co.uk" className="hover:text-gold transition duration-300">
+                      <a href="mailto:info@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
                         info@crownlineproperties.co.uk
                       </a>
                     </p>
