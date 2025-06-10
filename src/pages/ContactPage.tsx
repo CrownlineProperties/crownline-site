@@ -105,12 +105,12 @@ const ContactPage = () => {
               
               {/* Map */}
               <GoogleMap
-                address="60 Gray's Inn Road, London WC1X 8LU"
+                address="45 Broad Lane, London N15 4DJ"
                 zoom={16}
                 className="w-full h-64 rounded-property"
               />
               <p className="text-sm text-gray-500 mt-2">
-                Conveniently located near Chancery Lane station (Central Line) and King's Cross St. Pancras.
+                Conveniently located near Tottenham Hale and Seven Sisters stations (Victoria Line and National Rail).
               </p>
             </div>
             
