@@ -6,15 +6,16 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
+  /* global page background + text colour */
   body {
-    @apply bg-offwhite text-navy;
+    @apply bg-gold text-navy;   /* ← was bg-offwhite */
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-poppins font-semibold leading-tight;
   }
-  
+
   p, li, span {
     @apply font-inter font-normal leading-relaxed;
   }
@@ -24,43 +25,43 @@
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
-  
+
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-property font-semibold transition duration-300;
   }
-  
+
   .btn-primary {
     @apply btn bg-gold text-navy hover:bg-opacity-90;
   }
-  
+
   .btn-secondary {
     @apply btn bg-navy text-white hover:bg-opacity-90;
   }
-  
+
   .btn-outline {
     @apply btn border-2 border-navy text-navy hover:bg-navy hover:text-white;
   }
-  
+
   .nav-link {
     @apply font-medium text-navy hover:text-gold transition duration-300;
   }
-  
+
   .card {
     @apply bg-white rounded-property shadow-subtle p-6;
   }
-  
+
   .section {
     @apply py-12 md:py-16 lg:py-20;
   }
-  
+
   .section-title {
     @apply text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 md:mb-8;
   }
-  
+
   .form-input {
     @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold;
   }
-  
+
   .form-label {
     @apply block text-sm font-medium text-navy mb-1;
   }
