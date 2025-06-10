@@ -140,13 +140,13 @@ const ComplaintProcedurePage = () => {
               </p>
               
               <div className="bg-offwhite p-6 rounded-property mb-6">
-                <h3 className="font-semibold mb-4">Contact Details:</h3>
+                <h3 className="font-semibold mb-4 text-navy">Contact Details:</h3>
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <Mail className="text-gold mr-3 flex-shrink-0" size={18} />
                     <div>
-                      <span className="font-medium">Email:</span>{" "}
-                      <a href="mailto:admin@tpos.co.uk" className="text-gold hover:underline">
+                      <span className="font-medium text-navy">Email:</span>{" "}
+                      <a href="mailto:admin@tpos.co.uk" className="text-navy hover:text-gold transition duration-300">
                         admin@tpos.co.uk
                       </a>
                     </div>
@@ -154,8 +154,8 @@ const ComplaintProcedurePage = () => {
                   <div className="flex items-center">
                     <Phone className="text-gold mr-3 flex-shrink-0" size={18} />
                     <div>
-                      <span className="font-medium">Phone:</span>{" "}
-                      <a href="tel:01722333306" className="text-gold hover:underline">
+                      <span className="font-medium text-navy">Phone:</span>{" "}
+                      <a href="tel:01722333306" className="text-navy hover:text-gold transition duration-300">
                         01722 333 306
                       </a>
                     </div>
@@ -163,8 +163,8 @@ const ComplaintProcedurePage = () => {
                   <div className="flex items-center">
                     <ExternalLink className="text-gold mr-3 flex-shrink-0" size={18} />
                     <div>
-                      <span className="font-medium">Website:</span>{" "}
-                      <a href="https://www.tpos.co.uk" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                      <span className="font-medium text-navy">Website:</span>{" "}
+                      <a href="https://www.tpos.co.uk" target="_blank" rel="noopener noreferrer" className="text-navy hover:text-gold transition duration-300">
                         www.tpos.co.uk
                       </a>
                     </div>
