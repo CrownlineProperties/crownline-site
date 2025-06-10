@@ -13,6 +13,7 @@ import PropertyPricesPage from './pages/PropertyPricesPage';
 import AreaGuidePage from './pages/AreaGuidePage';
 import SellingProcessPage from './pages/SellingProcessPage';
 import PropertyDetailPage from './pages/PropertyDetailPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Admin Pages
@@ -48,6 +49,7 @@ function App() {
           <Route path="selling-process" element={<SellingProcessPage />} />
         </Route>
         <Route path="property/:slug" element={<PropertyDetailPage />} />
+        <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

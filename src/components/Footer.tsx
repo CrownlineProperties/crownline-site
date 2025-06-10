@@ -113,9 +113,15 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} Crownline Properties. All rights reserved.
           </p>
-          <p className="text-gray-500 text-xs mt-2">
-            This website is for demonstration purposes only. All property listings are fictional.
-          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-2">
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-gold text-xs transition duration-300">
+              Privacy Policy
+            </Link>
+            <span className="text-gray-500 text-xs">•</span>
+            <span className="text-gray-500 text-xs">
+              This website is for demonstration purposes only. All property listings are fictional.
+            </span>
+          </div>
         </div>
       </div>
     </footer>
