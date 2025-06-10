@@ -220,8 +220,8 @@ const LandlordsLettingsPage = () => {
                 <li className="flex items-start">
                   <Check className="text-gold mt-1 mr-3 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Multilingual Support</h3>
-                    <p className="text-gray-600">Dedicated Mandarin and Cantonese speaking staff to assist Asian investors.</p>
+                    <h3 className="font-semibold">Community-Focused Support</h3>
+                    <p className="text-gray-600">Our team understands the unique needs of Nigerians living in the UK and provides tailored guidance for every step of your property journey.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
