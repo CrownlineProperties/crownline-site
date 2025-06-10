@@ -11,7 +11,7 @@ export const adminAuth = {
       if (password === 'admin123') {
         const user: AdminUser = {
           id: '1',
-          email: 'admin@crownline.co.uk',
+          email: 'admin@crownlineproperties.co.uk',
           created_at: new Date().toISOString()
         };
         
