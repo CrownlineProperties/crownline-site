@@ -46,15 +46,15 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* About Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">About</h3>
             <ul className="space-y-2">
-              <li><Link to="/rent" className="text-gray-300 hover:text-gold transition duration-300">Rent</Link></li>
-              <li><Link to="/buy" className="text-gray-300 hover:text-gold transition duration-300">Buy</Link></li>
-              <li><Link to="/valuation/sales" className="text-gray-300 hover:text-gold transition duration-300">Get a Valuation</Link></li>
-              <li><Link to="/landlords/lettings" className="text-gray-300 hover:text-gold transition duration-300">Landlord Services</Link></li>
-              <li><Link to="/about" className="text-gray-300 hover:text-gold transition duration-300">About Us</Link></li>
+              <li><Link to="/privacy-policy" className="text-gray-300 hover:text-gold transition duration-300">Privacy Policy</Link></li>
+              <li><Link to="/data-protection" className="text-gray-300 hover:text-gold transition duration-300">Data Protection</Link></li>
+              <li><Link to="/terms-conditions" className="text-gray-300 hover:text-gold transition duration-300">Terms and Conditions</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-gold transition duration-300">About us</Link></li>
+              <li><Link to="/complaint-procedure" className="text-gray-300 hover:text-gold transition duration-300">Complaint Procedure</Link></li>
             </ul>
           </div>
 
