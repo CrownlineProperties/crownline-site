@@ -61,7 +61,7 @@ const RentalValuationPage = () => {
                   <Check className="text-gold mt-1 mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Dedicated International Desk</h3>
-                    <p className="text-gray-600">Specialized services for overseas landlords with multilingual staff to assist you.</p>
+                    <p className="text-gray-600">Specialised services for overseas landlords with multilingual staff to assist you.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
