@@ -80,9 +80,9 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card text-center flex flex-col items-center">
               <Globe size={48} className="text-gold mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Dedicated Multilingual Team</h3>
+              <h3 className="text-xl font-semibold mb-2">Friendly Support Team</h3>
               <p className="text-gray-600">
-                Mandarin & Cantonese speaking staff to assist international investors.
+                Our dedicated team is here to help every step of the way — with advice, guidance, and support tailored to your needs.
               </p>
             </div>
             <div className="card text-center flex flex-col items-center">
