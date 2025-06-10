@@ -66,6 +66,7 @@ const Footer = () => {
               <li><Link to="/resources/area-guide" className="text-gray-300 hover:text-gold transition duration-300">Area Guide</Link></li>
               <li><Link to="/resources/selling-process" className="text-gray-300 hover:text-gold transition duration-300">Selling Process</Link></li>
               <li><Link to="/contact" className="text-gray-300 hover:text-gold transition duration-300">Contact Us</Link></li>
+              <li><Link to="/complaint-procedure" className="text-gray-300 hover:text-gold transition duration-300">Complaints</Link></li>
             </ul>
           </div>
 
@@ -124,6 +125,10 @@ const Footer = () => {
             <span className="text-gray-500 text-xs">•</span>
             <Link to="/data-protection" className="text-gray-500 hover:text-gold text-xs transition duration-300">
               Cookie Policy
+            </Link>
+            <span className="text-gray-500 text-xs">•</span>
+            <Link to="/complaint-procedure" className="text-gray-500 hover:text-gold text-xs transition duration-300">
+              Complaints
             </Link>
             <span className="text-gray-500 text-xs">•</span>
             <span className="text-gray-500 text-xs">
