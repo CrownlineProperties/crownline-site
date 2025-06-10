@@ -62,7 +62,7 @@ const areas: AreaInfo[] = [
   {
     name: 'Greenwich',
     description: 'A historic area with maritime heritage, green spaces, and a mixture of period and modern properties. Popular with families and professionals.',
-    image: 'https://images.pexels.com/photos/1559699/pexels-photo-1559699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    image: 'https://images.pexels.com/photos/2793649/pexels-photo-2793649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averagePrice: '£500,000 - £1,200,000',
     averageRent: '£1,500 - £2,800 pcm',
     transport: ['DLR', 'Jubilee Line', 'Southeastern', 'Thames Clipper'],
