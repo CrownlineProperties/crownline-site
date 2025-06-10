@@ -284,7 +284,7 @@ const AreaGuidePage = () => {
         </div>
       </section>
 
-      <section className="relative py-20 bg-cover bg-center" style={{ backgroundImage: "url('https://images.pexels.com/photos/460680/pexels-photo-460680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}>
+      <section className="relative py-20 bg-cover bg-center" style={{ backgroundImage: "url('https://images.pexels.com/photos/7119248/pexels-photo-7119248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}>
         <div className="absolute inset-0 bg-navy bg-opacity-80"></div>
         <div className="container-custom relative z-10 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
