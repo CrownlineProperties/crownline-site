@@ -272,7 +272,7 @@ const AboutPage = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">International Perspective</h3>
                 <p className="text-gray-300">
-                  We understand the unique challenges faced by overseas investors and provide specialized services to overcome language, time zone, and regulatory barriers.
+                  We understand the unique challenges faced by overseas investors and provide specialised services to overcome language, time zone, and regulatory barriers.
                 </p>
               </div>
             </div>
