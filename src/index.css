@@ -65,3 +65,7 @@
     @apply block text-sm font-medium text-navy mb-1;
   }
 }
+
+@layer base {
+  body { @apply bg-brandGold; }
+}
