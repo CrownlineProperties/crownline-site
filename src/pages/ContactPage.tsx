@@ -158,7 +158,7 @@ const ContactPage = () => {
             <div className="card hover:shadow-md transition-all duration-300">
               <h3 className="text-xl font-semibold mb-2">What areas of London do you cover?</h3>
               <p className="text-gray-600">
-                We specialize in Central London areas including Kensington, Chelsea, Mayfair, Westminster, City of London, Canary Wharf, Islington, Camden, and surrounding areas.
+                We specialise in Central London areas including Kensington, Chelsea, Mayfair, Westminster, City of London, Canary Wharf, Islington, Camden, and surrounding areas.
               </p>
             </div>
             
