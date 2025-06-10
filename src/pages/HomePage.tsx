@@ -298,7 +298,7 @@ const HomePage = () => {
             </div>
             <div>
               <GoogleMap
-                address="60 Gray's Inn Road, London WC1X 8LU"
+                address="45 Broad Lane, London N15 4DJ"
                 zoom={16}
                 className="w-full h-80 rounded-property"
               />
