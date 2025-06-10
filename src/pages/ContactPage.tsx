@@ -64,13 +64,13 @@ const ContactPage = () => {
                       <li>
                         <span className="font-medium">Sales:</span>{" "}
                         <a href="mailto:sales@crownline.co.uk" className="hover:text-gold transition duration-300">
-                          sales@crownline.co.uk
+                          info@crownlineproperties.co.uk
                         </a>
                       </li>
                       <li>
                         <span className="font-medium">Property Management:</span>{" "}
                         <a href="mailto:management@crownline.co.uk" className="hover:text-gold transition duration-300">
-                          management@crownline.co.uk
+                          info@crownlineproperties.co.uk
                         </a>
                       </li>
                     </ul>
