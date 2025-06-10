@@ -21,16 +21,19 @@ export interface PropertyData {
 export const propertyService = {
   async getAllProperties(): Promise<PropertyData[]> {
     try {
+      console.log('Fetching all properties...');
+      
       const { data, error } = await supabase
         .from('properties')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Error fetching properties:', error);
+        console.error('Supabase error fetching properties:', error);
         return [];
       }
       
+      console.log('Fetched properties:', data?.length || 0);
       return data || [];
     } catch (err) {
       console.error('Failed to fetch properties:', err);
@@ -46,14 +49,14 @@ export const propertyService = {
         .from('properties')
         .select('*')
         .eq('id', id)
-        .maybeSingle(); // Use maybeSingle instead of single to handle no results gracefully
+        .maybeSingle();
 
       if (error) {
-        console.error('Error fetching property:', error);
+        console.error('Supabase error fetching property:', error);
         return null;
       }
       
-      console.log('Property data:', data);
+      console.log('Fetched property:', data);
       return data;
     } catch (err) {
       console.error('Failed to fetch property:', err);
@@ -63,17 +66,20 @@ export const propertyService = {
 
   async getPropertyBySlug(slug: string): Promise<PropertyData | null> {
     try {
+      console.log('Fetching property with slug:', slug);
+      
       const { data, error } = await supabase
         .from('properties')
         .select('*')
         .eq('slug', slug)
-        .maybeSingle(); // Use maybeSingle instead of single
+        .maybeSingle();
 
       if (error) {
-        console.error('Error fetching property by slug:', error);
+        console.error('Supabase error fetching property by slug:', error);
         return null;
       }
       
+      console.log('Fetched property by slug:', data);
       return data;
     } catch (err) {
       console.error('Failed to fetch property by slug:', err);
@@ -85,22 +91,50 @@ export const propertyService = {
     try {
       console.log('Creating property:', property);
       
+      // Ensure required fields are present
+      if (!property.title?.trim()) {
+        throw new Error('Property title is required');
+      }
+      
+      if (!property.slug?.trim()) {
+        throw new Error('Property slug is required');
+      }
+      
+      if (!property.description?.trim()) {
+        throw new Error('Property description is required');
+      }
+      
+      if (!property.gallery || property.gallery.length === 0) {
+        throw new Error('At least one image is required');
+      }
+
+      // Set thumbnail to first gallery image if not provided
+      const propertyData = {
+        ...property,
+        thumb: property.thumb || property.gallery[0],
+        features: property.features.filter(f => f.trim() !== ''),
+      };
+      
       const { data, error } = await supabase
         .from('properties')
-        .insert([property])
+        .insert([propertyData])
         .select()
         .single();
 
       if (error) {
-        console.error('Error creating property:', error);
-        throw new Error('Failed to create property: ' + error.message);
+        console.error('Supabase error creating property:', error);
+        throw new Error(`Failed to create property: ${error.message}`);
+      }
+      
+      if (!data) {
+        throw new Error('No data returned after creating property');
       }
       
       console.log('Created property:', data);
       return data;
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to create property:', err);
-      throw err;
+      throw new Error(err.message || 'Failed to create property');
     }
   },
 
@@ -109,6 +143,10 @@ export const propertyService = {
       console.log('Updating property with ID:', id);
       console.log('Update data:', property);
       
+      if (!id) {
+        throw new Error('Property ID is required for update');
+      }
+      
       // First check if the property exists
       const { data: existingData, error: fetchError } = await supabase
         .from('properties')
@@ -118,35 +156,46 @@ export const propertyService = {
       
       if (fetchError) {
         console.error('Error checking property existence:', fetchError);
-        throw new Error('Failed to verify property exists: ' + fetchError.message);
+        throw new Error(`Failed to verify property exists: ${fetchError.message}`);
       }
       
       if (!existingData) {
         throw new Error(`Property with ID ${id} not found`);
       }
       
+      // Clean the update data
+      const updateData = { ...property };
+      if (updateData.features) {
+        updateData.features = updateData.features.filter(f => f.trim() !== '');
+      }
+      
+      // Set thumbnail to first gallery image if gallery is provided but thumb is not
+      if (updateData.gallery && updateData.gallery.length > 0 && !updateData.thumb) {
+        updateData.thumb = updateData.gallery[0];
+      }
+      
       // Now perform the update
       const { data, error } = await supabase
         .from('properties')
-        .update(property)
+        .update(updateData)
         .eq('id', id)
         .select()
-        .maybeSingle(); // Use maybeSingle to handle edge cases
+        .single();
 
       if (error) {
-        console.error('Error updating property:', error);
-        throw new Error('Failed to update property: ' + error.message);
+        console.error('Supabase error updating property:', error);
+        throw new Error(`Failed to update property: ${error.message}`);
       }
       
       if (!data) {
-        throw new Error('No data returned after update - property may not exist');
+        throw new Error('No data returned after update');
       }
       
       console.log('Updated property:', data);
       return data;
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to update property:', err);
-      throw err;
+      throw new Error(err.message || 'Failed to update property');
     }
   },
 
@@ -154,6 +203,10 @@ export const propertyService = {
     try {
       console.log('Deleting property with ID:', id);
       
+      if (!id) {
+        throw new Error('Property ID is required for deletion');
+      }
+      
       // First check if the property exists
       const { data: existingData, error: fetchError } = await supabase
         .from('properties')
@@ -163,7 +216,7 @@ export const propertyService = {
       
       if (fetchError) {
         console.error('Error checking property existence:', fetchError);
-        throw new Error('Failed to verify property exists: ' + fetchError.message);
+        throw new Error(`Failed to verify property exists: ${fetchError.message}`);
       }
       
       if (!existingData) {
@@ -176,19 +229,21 @@ export const propertyService = {
         .eq('id', id);
 
       if (error) {
-        console.error('Error deleting property:', error);
-        throw new Error('Failed to delete property: ' + error.message);
+        console.error('Supabase error deleting property:', error);
+        throw new Error(`Failed to delete property: ${error.message}`);
       }
       
       console.log('Property deleted successfully');
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to delete property:', err);
-      throw err;
+      throw new Error(err.message || 'Failed to delete property');
     }
   },
 
   async getPropertiesByType(type: 'rent' | 'sale'): Promise<PropertyData[]> {
     try {
+      console.log('Fetching properties by type:', type);
+      
       const { data, error } = await supabase
         .from('properties')
         .select('*')
@@ -196,10 +251,11 @@ export const propertyService = {
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Error fetching properties by type:', error);
+        console.error('Supabase error fetching properties by type:', error);
         return [];
       }
       
+      console.log('Fetched properties by type:', data?.length || 0);
       return data || [];
     } catch (err) {
       console.error('Failed to fetch properties by type:', err);
