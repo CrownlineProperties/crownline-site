@@ -57,7 +57,7 @@ const ContactPage = () => {
                     <ul className="mt-2 text-sm text-gray-600">
                       <li>
                         <span className="font-medium">Lettings:</span>{" "}
-                        <a href="mailto:lettings@crownline.co.uk" className="hover:text-gold transition duration-300">
+                        <a href="mailto:lettings@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
                           lettings@crownline.co.uk
                         </a>
                       </li>
