@@ -217,7 +217,7 @@ const AboutPage = () => {
             {/* These would be real accreditation logos in production */}
             <div className="w-32 h-24 bg-white rounded-property shadow-subtle flex items-center justify-center p-4">
               <img 
-                src="https://images.pexels.com/photos/7821702/pexels-photo-7821702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://cdn.pixabay.com/photo/2016/03/31/21/04/black-1296170_1280.png" 
                 alt="Property Ombudsman"
                 className="max-w-full max-h-full"
               />
