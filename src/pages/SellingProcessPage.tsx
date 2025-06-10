@@ -11,7 +11,7 @@ const SellingProcessPage = () => {
       <Hero
         title="The Property Selling Process"
         subtitle="A comprehensive guide to selling your property with Crownline"
-        backgroundImage="https://images.pexels.com/photos/5313361/pexels-photo-5313361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        backgroundImage="https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         fullHeight={false}
         buttons={[
           { text: 'Get a Free Valuation', href: '/valuation/sales', variant: 'primary' },
