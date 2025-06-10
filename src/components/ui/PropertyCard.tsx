@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Bed, Bath, MapPin, ArrowRight, Home } from 'lucide-react';
+import { Bed, Bath, MapPin, ArrowRight, ExternalLink } from 'lucide-react';
 import { Property } from '../../types';
 import { formatPrice } from '../../utils/formatters';
 
@@ -17,6 +17,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
     baths,
     thumb,
     listingType,
+    rightmoveUrl,
   } = property;
 
   return (
@@ -33,6 +34,19 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             {listingType === 'rent' ? 'To Rent' : 'For Sale'}
           </span>
         </div>
+        {rightmoveUrl && (
+          <div className="absolute top-3 right-3">
+            <a
+              href={rightmoveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white bg-opacity-90 hover:bg-opacity-100 text-navy p-2 rounded-full transition-all duration-300"
+              title="View on Rightmove"
+            >
+              <ExternalLink size={16} />
+            </a>
+          </div>
+        )}
       </div>
       
       {/* Content */}
@@ -61,13 +75,28 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
         </div>
         
-        <Link 
-          to={`/property/${slug}`} 
-          className="text-navy font-medium flex items-center hover:text-gold transition duration-300"
-        >
-          View details
-          <ArrowRight size={16} className="ml-1" />
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link 
+            to={`/property/${slug}`} 
+            className="text-navy font-medium flex items-center hover:text-gold transition duration-300"
+          >
+            View details
+            <ArrowRight size={16} className="ml-1" />
+          </Link>
+          
+          {rightmoveUrl && (
+            <a
+              href={rightmoveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-600 hover:text-gold transition duration-300 flex items-center"
+              title="View on Rightmove"
+            >
+              Rightmove
+              <ExternalLink size={14} className="ml-1" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

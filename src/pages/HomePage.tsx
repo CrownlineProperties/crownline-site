@@ -38,6 +38,7 @@ const HomePage = () => {
         floorSize: p.floor_size,
         dateAvailable: p.date_available,
         furnished: p.furnished,
+        rightmoveUrl: p.rightmove_url,
       }));
 
       const sales = convertedProperties

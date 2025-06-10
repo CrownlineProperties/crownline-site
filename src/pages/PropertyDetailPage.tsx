@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail } from 'lucide-react';
+import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail, ExternalLink } from 'lucide-react';
 import Button from '../components/ui/Button';
 import ContactForm from '../components/ui/ContactForm';
 import { PropertyData, propertyService } from '../lib/properties';
@@ -99,6 +99,7 @@ const PropertyDetailPage = () => {
     listing_type,
     date_available,
     furnished,
+    rightmove_url,
   } = property;
 
   return (
@@ -137,10 +138,34 @@ const PropertyDetailPage = () => {
                 <Mail size={16} className="mr-2" />
                 Email
               </Button>
+              {rightmove_url && (
+                <Button 
+                  href={rightmove_url}
+                  variant="outline"
+                  className="hidden sm:flex"
+                >
+                  <ExternalLink size={16} className="mr-2" />
+                  Rightmove
+                </Button>
+              )}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Rightmove Link for Mobile */}
+      {rightmove_url && (
+        <div className="container-custom mb-6 sm:hidden">
+          <Button 
+            href={rightmove_url}
+            variant="outline"
+            className="w-full"
+          >
+            <ExternalLink size={16} className="mr-2" />
+            View on Rightmove
+          </Button>
+        </div>
+      )}
 
       {/* Property Gallery */}
       <div className="container-custom mb-12">
@@ -227,6 +252,28 @@ const PropertyDetailPage = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Rightmove Link */}
+            {rightmove_url && (
+              <div className="card mb-8 bg-offwhite border border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">View on Rightmove</h3>
+                    <p className="text-gray-600">
+                      See additional photos, floor plans, and market insights for this property on Rightmove.
+                    </p>
+                  </div>
+                  <Button 
+                    href={rightmove_url}
+                    variant="primary"
+                    className="ml-4"
+                  >
+                    <ExternalLink size={16} className="mr-2" />
+                    View Listing
+                  </Button>
+                </div>
               </div>
             )}
 

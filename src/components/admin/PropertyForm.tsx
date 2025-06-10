@@ -31,6 +31,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
     floor_size: 0,
     date_available: '',
     furnished: false,
+    rightmove_url: '',
   });
 
   useEffect(() => {
@@ -64,6 +65,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
           floor_size: property.floor_size || 0,
           date_available: property.date_available || '',
           furnished: property.furnished || false,
+          rightmove_url: property.rightmove_url || '',
         });
       } else {
         setError('Property not found');
@@ -122,6 +124,7 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
         features: formData.features.filter(feature => feature.trim() !== ''),
         floor_size: formData.floor_size || undefined,
         date_available: formData.date_available || undefined,
+        rightmove_url: formData.rightmove_url?.trim() || undefined,
       };
 
       console.log('Submitting form data:', cleanData);
@@ -362,6 +365,22 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
               </div>
             </div>
           )}
+
+          <div className="mt-6">
+            <label htmlFor="rightmove_url" className="form-label">Rightmove URL (Optional)</label>
+            <input
+              type="url"
+              id="rightmove_url"
+              name="rightmove_url"
+              value={formData.rightmove_url}
+              onChange={handleInputChange}
+              className="form-input"
+              placeholder="https://www.rightmove.co.uk/properties/..."
+            />
+            <p className="text-sm text-gray-500 mt-1">
+              Link to the property listing on Rightmove for additional information
+            </p>
+          </div>
         </div>
 
         <div className="card">

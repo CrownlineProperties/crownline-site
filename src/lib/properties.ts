@@ -16,6 +16,7 @@ export interface PropertyData {
   floor_size?: number;
   date_available?: string;
   furnished?: boolean;
+  rightmove_url?: string;
 }
 
 export const propertyService = {

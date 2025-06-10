@@ -15,6 +15,7 @@ export interface Property {
   floorSize?: number;
   dateAvailable?: string;
   furnished?: boolean;
+  rightmoveUrl?: string;
 }
 
 export interface Testimonial {
