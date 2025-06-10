@@ -57,19 +57,19 @@ const ContactPage = () => {
                     <ul className="mt-2 text-sm text-gray-600">
                       <li>
                         <span className="font-medium">Lettings:</span>{" "}
-                        <a href="mailto:lettings@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
+                        <a href="mailto:info@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
                           info@crownlineproperties.co.uk
                         </a>
                       </li>
                       <li>
                         <span className="font-medium">Sales:</span>{" "}
-                        <a href="mailto:sales@crownline.co.uk" className="hover:text-gold transition duration-300">
+                        <a href="mailto:info@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
                           info@crownlineproperties.co.uk
                         </a>
                       </li>
                       <li>
                         <span className="font-medium">Property Management:</span>{" "}
-                        <a href="mailto:management@crownline.co.uk" className="hover:text-gold transition duration-300">
+                        <a href="mailto:info@crownlineproperties.co.uk" className="hover:text-gold transition duration-300">
                           info@crownlineproperties.co.uk
                         </a>
                       </li>
