@@ -8,8 +8,8 @@ export default {
         navy:     '#0A0F2D',
         offwhite: '#F4F5F7',
 
-        /* ← site-wide background colour (gold) */
-        gold:     '#D4AF37',
+        /* site-wide background colour  */
+        gold:     '#D4AF37',     // ← changed from #E7B10A
       },
 
       fontFamily: {
