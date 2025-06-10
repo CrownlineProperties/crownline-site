@@ -13,7 +13,7 @@ export default {
         navy:      '#0A0F2D',   // text / accents
         gold:      '#D4AF37',   // site-wide background
         champagne: '#FFF8E1',   // light-gold (replacement for pure white)
-        offwhite:  '#FFF8E1',   // keep for optional neutral areas
+        offwhite:  '#D4AF37',   // keep for optional neutral areas
       },
 
       fontFamily: {
