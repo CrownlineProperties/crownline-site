@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, testSupabaseConnection } from './supabase';
 
 export interface PropertyData {
   id?: string;
@@ -24,6 +24,13 @@ export const propertyService = {
     try {
       console.log('Fetching all properties...');
       
+      // Test connection first
+      const connectionOk = await testSupabaseConnection();
+      if (!connectionOk) {
+        console.error('Supabase connection test failed');
+        return [];
+      }
+      
       const { data, error } = await supabase
         .from('properties')
         .select('*')
@@ -31,6 +38,12 @@ export const propertyService = {
 
       if (error) {
         console.error('Supabase error fetching properties:', error);
+        console.error('Error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
         return [];
       }
       
@@ -38,6 +51,9 @@ export const propertyService = {
       return data || [];
     } catch (err) {
       console.error('Failed to fetch properties:', err);
+      console.error('Error type:', typeof err);
+      console.error('Error name:', err instanceof Error ? err.name : 'Unknown');
+      console.error('Error message:', err instanceof Error ? err.message : String(err));
       return [];
     }
   },
