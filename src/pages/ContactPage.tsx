@@ -94,10 +94,10 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Departments</h3>
                     <ul className="text-gray-600">
-                      <li><span className="font-medium">Sales:</span> 020 3887 8101</li>
-                      <li><span className="font-medium">Lettings:</span> 020 3887 8102</li>
-                      <li><span className="font-medium">Property Management:</span> 020 3887 8103</li>
-                      <li><span className="font-medium">International Desk (中文服务):</span> 020 3887 8104</li>
+                      <li><span className="font-medium">Sales:</span> 020 3489 2040</li>
+                      <li><span className="font-medium">Lettings:</span> 020 3489 2040</li>
+                      <li><span className="font-medium">Property Management:</span> 020 3489 2040</li>
+                      <li><span className="font-medium">International Desk (中文服务):</span> 020 3489 2040</li>
                     </ul>
                   </div>
                 </div>
