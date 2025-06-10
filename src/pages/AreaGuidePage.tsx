@@ -346,7 +346,7 @@ const AreaGuidePage = () => {
             
             <div className="h-96 rounded-property overflow-hidden">
               <img 
-                src="https://images.pexels.com/photos/2079456/pexels-photo-2079456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://images.pexels.com/photos/221166/pexels-photo-221166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                 alt="London property investment" 
                 className="w-full h-full object-cover"
               />
