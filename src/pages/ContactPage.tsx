@@ -136,7 +136,7 @@ const ContactPage = () => {
                         className="h-12 w-auto"
                       />
                       <img 
-                        src="" 
+                        src="https://cdn.pixabay.com/photo/2013/07/12/12/56/home-146585_1280.png" 
                         alt="Property Ombudsman" 
                         className="h-12 w-auto"
                       />
