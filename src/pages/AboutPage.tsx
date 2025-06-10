@@ -52,7 +52,7 @@ const AboutPage = () => {
                 <h3 className="text-xl font-semibold">Client-First Approach</h3>
               </div>
               <p className="text-gray-600">
-                We prioritise your needs and goals, providing personalized service and tailored solutions for every client, whether you're a first-time buyer or seasoned investor.
+                We prioritise your needs and goals, providing personalised service and tailored solutions for every client, whether you're a first-time buyer or seasoned investor.
               </p>
             </div>
             
