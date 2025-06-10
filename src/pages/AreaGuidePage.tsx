@@ -44,7 +44,7 @@ const areas: AreaInfo[] = [
   {
     name: 'Fulham',
     description: 'A popular residential area with a village feel, attractive period houses, and excellent schools. Close to the Thames and various parks.',
-    image: 'https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    image: 'https://images.pexels.com/photos/5994406/pexels-photo-5994406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averagePrice: '£800,000 - £2,000,000',
     averageRent: '£1,800 - £4,000 pcm',
     transport: ['District Line', 'Piccadilly Line', 'Buses', 'Overground'],
