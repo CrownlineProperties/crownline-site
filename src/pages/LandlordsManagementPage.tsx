@@ -172,8 +172,8 @@ const LandlordsManagementPage = () => {
                 <li className="flex items-start">
                   <Check className="text-gold mt-1 mr-3 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-white">Mandarin & Cantonese Support</h3>
-                    <p className="text-gray-300">Dedicated multilingual property managers for Asian investors.</p>
+                    <h3 className="font-semibold text-white">London Property Experts with Heart</h3>
+                    <p className="text-gray-300">From renting to investing, we make navigating London’s property market simpler, more human, and tailored to your needs.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
