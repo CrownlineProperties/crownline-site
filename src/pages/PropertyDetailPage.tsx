@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail, ExternalLink } from 'lucide-react';
 import Button from '../components/ui/Button';
-import ContactForm from '../components/ui/ContactForm';
+import PropertyInquiryForm from '../components/ui/PropertyInquiryForm';
 import GoogleMap from '../components/ui/GoogleMap';
 import { PropertyData, propertyService } from '../lib/properties';
 import { formatPrice } from '../utils/formatters';
@@ -88,6 +88,7 @@ const PropertyDetailPage = () => {
   }
 
   const {
+    id,
     title,
     area,
     price,
@@ -294,11 +295,14 @@ const PropertyDetailPage = () => {
 
           {/* Sidebar */}
           <div>
-            {/* Contact Form */}
+            {/* Property Inquiry Form */}
             <div className="sticky top-24">
-              <ContactForm 
-                title="Request a Viewing" 
-                subtitle={`Interested in this ${listing_type === 'rent' ? 'rental' : 'property'}? Get in touch to schedule a viewing.`}
+              <PropertyInquiryForm
+                propertyId={id || ''}
+                propertyTitle={title}
+                listingType={listing_type}
+                title={`Interested in this ${listing_type === 'rent' ? 'rental' : 'property'}?`}
+                subtitle="Fill out the form below and our team will get back to you shortly."
               />
             </div>
           </div>
