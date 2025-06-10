@@ -213,7 +213,7 @@ const LandlordsLettingsPage = () => {
             <div>
               <h2 className="section-title">International Landlord Services</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Crownline specializes in helping overseas landlords manage their London property investments with confidence and ease.
+                Crownline specialises in helping overseas landlords manage their London property investments with confidence and ease.
               </p>
               
               <ul className="space-y-4 mb-8">
