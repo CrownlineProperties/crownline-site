@@ -148,7 +148,7 @@ const AboutPage = () => {
             <div className="card text-center">
               <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <img 
-                  src="https://images.pexels.com/photos/936593/pexels-photo-936593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                  src="https://images.pexels.com/photos/27739038/pexels-photo-27739038/free-photo-of-a-man-sitting-on-a-chair-with-his-hands-in-his-pockets.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                   alt="David Zhang - Head of Property Management" 
                   className="w-full h-full object-cover"
                 />
