@@ -131,13 +131,12 @@ const ContactPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <img 
-                        src="https://images.pexels.com/photos/7821702/pexels-photo-7821702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                        src="" 
                         alt="Money Shield" 
                         className="h-12 w-auto"
                       />
                       <img 
-                        src="https://images.pexels.com/photos/4986534/pexels-photo-4986534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
-                      " 
+                        src="" 
                         alt="Property Ombudsman" 
                         className="h-12 w-auto"
                       />
