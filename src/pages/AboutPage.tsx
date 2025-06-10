@@ -26,7 +26,7 @@ const AboutPage = () => {
                 Our journey began when our founder, James Chen, identified a gap in the market for property services that truly understood the unique needs of overseas investors. Having experienced the challenges firsthand as an international property owner, James built Crownline with a clear mission: to make London property investment accessible, transparent, and rewarding for clients around the world.
               </p>
               <p className="text-lg text-gray-700">
-                Today, we're proud to manage over £180 million in property assets across prime London locations, serving clients from more than 15 countries with our multilingual team and specialized services.
+                Today, we're proud to manage over £180 million in property assets across prime London locations, serving clients from more than 15 countries with our multilingual team and specialised services.
               </p>
             </div>
             <div className="rounded-property overflow-hidden">
