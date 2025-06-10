@@ -177,9 +177,9 @@ const ContactPage = () => {
             </div>
             
             <div className="card hover:shadow-md transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-2">Do you have staff who speak Mandarin?</h3>
+              <h3 className="text-xl font-semibold mb-2">Do you work with clients from Nigeria?</h3>
               <p className="text-gray-600">
-                Yes, our international desk has Mandarin and Cantonese speaking staff to assist Chinese investors and landlords. Please contact our international desk directly.
+                Yes, we proudly support the Nigerian community in London. Our team understands your unique needs — from first-time buyers to landlords and investors.
               </p>
             </div>
           </div>
