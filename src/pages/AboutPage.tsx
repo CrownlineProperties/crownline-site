@@ -156,7 +156,7 @@ const AboutPage = () => {
               <h3 className="text-xl font-semibold mb-1">David Zhang</h3>
               <p className="text-gold mb-3">Head of Property Management</p>
               <p className="text-gray-600 mb-4">
-                Fluent in Mandarin and English, David specializes in helping overseas landlords navigate the complexities of UK property management.
+                Fluent in Mandarin and English, David specialises in helping overseas landlords navigate the complexities of UK property management.
               </p>
             </div>
             
