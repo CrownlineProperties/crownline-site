@@ -26,7 +26,7 @@ const areas: AreaInfo[] = [
   {
     name: 'Kensington',
     description: 'One of London\'s most affluent areas with beautiful period properties, garden squares, and proximity to museums and Hyde Park.',
-    image: 'https://images.pexels.com/photos/460695/pexels-photo-460695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    image: 'https://images.pexels.com/photos/9821313/pexels-photo-9821313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averagePrice: '£1,200,000 - £5,000,000',
     averageRent: '£2,500 - £6,000 pcm',
     transport: ['District Line', 'Circle Line', 'Piccadilly Line', 'Overground'],
