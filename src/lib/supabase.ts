@@ -10,11 +10,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // Create a single client instance with proper configuration
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    persistSession: false, // Disable auth session persistence for admin demo
-  },
-  global: {
-    headers: {
-      'apikey': supabaseAnonKey,
-    },
-  },
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false
+  }
 });
