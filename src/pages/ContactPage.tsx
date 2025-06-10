@@ -131,7 +131,7 @@ const ContactPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <img 
-                        src="" 
+                        src="https://cdn.pixabay.com/photo/2016/03/31/20/01/badge-1295465_1280.png" 
                         alt="Money Shield" 
                         className="h-12 w-auto"
                       />
