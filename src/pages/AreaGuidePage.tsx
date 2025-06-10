@@ -288,7 +288,7 @@ const AreaGuidePage = () => {
         <div className="absolute inset-0 bg-navy bg-opacity-80"></div>
         <div className="container-custom relative z-10 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-            Looking for personalized area recommendations?
+            Looking for personalised area recommendations?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Our local experts can help you find the perfect London location based on your needs and budget.
