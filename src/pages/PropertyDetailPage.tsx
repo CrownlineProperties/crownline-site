@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail, ExternalLink } from 'lucide-react';
 import Button from '../components/ui/Button';
 import ContactForm from '../components/ui/ContactForm';
+import GoogleMap from '../components/ui/GoogleMap';
 import { PropertyData, propertyService } from '../lib/properties';
 import { formatPrice } from '../utils/formatters';
 import { register } from 'swiper/element/bundle';
@@ -280,12 +281,11 @@ const PropertyDetailPage = () => {
             {/* Map */}
             <div className="card mb-8">
               <h2 className="text-xl font-semibold mb-4">Location</h2>
-              <div className="h-64 bg-gray-200 rounded-lg overflow-hidden">
-                <div 
-                  className="w-full h-full bg-cover bg-center" 
-                  style={{ backgroundImage: "url('https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}
-                ></div>
-              </div>
+              <GoogleMap
+                address={area}
+                zoom={16}
+                className="w-full h-64 rounded-lg"
+              />
               <p className="mt-4 text-gray-600">
                 {area}, London
               </p>

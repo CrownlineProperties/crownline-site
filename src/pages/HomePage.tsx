@@ -6,6 +6,7 @@ import Button from '../components/ui/Button';
 import PropertyGrid from '../components/ui/PropertyGrid';
 import TestimonialCarousel from '../components/ui/TestimonialCarousel';
 import ValuationModal from '../components/ui/ValuationModal';
+import GoogleMap from '../components/ui/GoogleMap';
 import { Property, Testimonial } from '../types';
 import { useProperties } from '../hooks/useProperties';
 
@@ -295,9 +296,12 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-            <div className="h-80 bg-gray-200 rounded-property overflow-hidden">
-              {/* This would be a Google Map in production */}
-              <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}></div>
+            <div>
+              <GoogleMap
+                address="60 Gray's Inn Road, London WC1X 8LU"
+                zoom={16}
+                className="w-full h-80 rounded-property"
+              />
             </div>
           </div>
         </div>

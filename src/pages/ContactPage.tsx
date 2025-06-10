@@ -1,5 +1,6 @@
 import Hero from '../components/ui/Hero';
 import ContactForm from '../components/ui/ContactForm';
+import GoogleMap from '../components/ui/GoogleMap';
 import { MapPin, Phone, Mail, Clock, Building2, Landmark } from 'lucide-react';
 
 const ContactPage = () => {
@@ -103,12 +104,11 @@ const ContactPage = () => {
               </div>
               
               {/* Map */}
-              <div className="h-64 bg-gray-200 rounded-property overflow-hidden">
-                <div 
-                  className="w-full h-full bg-cover bg-center" 
-                  style={{ backgroundImage: "url('https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}
-                ></div>
-              </div>
+              <GoogleMap
+                address="60 Gray's Inn Road, London WC1X 8LU"
+                zoom={16}
+                className="w-full h-64 rounded-property"
+              />
               <p className="text-sm text-gray-500 mt-2">
                 Conveniently located near Chancery Lane station (Central Line) and King's Cross St. Pancras.
               </p>
