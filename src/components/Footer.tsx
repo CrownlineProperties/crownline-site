@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-gold mr-2 flex-shrink-0" />
-                <a href="mailto:info@crownline.co.uk" className="text-gray-300 hover:text-gold transition duration-300">
+                <a href="mailto:info@crownlineproperties.co.uk" className="text-gray-300 hover:text-gold transition duration-300">
                   info@crownlineproperties.co.uk
                 </a>
               </li>
