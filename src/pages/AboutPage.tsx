@@ -186,7 +186,7 @@ const AboutPage = () => {
               <h3 className="text-xl font-semibold mb-1">Michael Lee</h3>
               <p className="text-gold mb-3">International Desk</p>
               <p className="text-gray-600 mb-4">
-                Fluent in Cantonese and English, Michael specializes in helping Hong Kong investors navigate the London property market.
+                Fluent in Cantonese and English, Michael specialises in helping Hong Kong investors navigate the London property market.
               </p>
             </div>
             
