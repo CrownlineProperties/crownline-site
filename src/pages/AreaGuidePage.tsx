@@ -53,7 +53,7 @@ const areas: AreaInfo[] = [
   {
     name: 'Camden',
     description: 'A diverse area famous for its markets, music venues, and alternative culture. Housing ranges from canal-side apartments to Georgian townhouses.',
-    image: 'https://images.unsplash.com/photo-1609421540051-adfbfc0deeac?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.pexels.com/photos/19121495/pexels-photo-19121495/free-photo-of-view-of-the-streets-of-camden-market-in-camden-town-london-england.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averagePrice: '£550,000 - £1,300,000',
     averageRent: '£1,600 - £2,800 pcm',
     transport: ['Northern Line', 'Overground', 'Thameslink', 'Buses'],
