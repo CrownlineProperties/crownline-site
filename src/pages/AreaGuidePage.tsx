@@ -78,7 +78,7 @@ const AreaGuidePage = () => {
       <Hero
         title="London Area Guide"
         subtitle="Discover the unique character and investment potential of London's most sought-after neighborhoods"
-        backgroundImage="https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        backgroundImage="https://images.pexels.com/photos/427679/pexels-photo-427679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         fullHeight={false}
       />
 
