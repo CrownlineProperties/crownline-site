@@ -433,7 +433,7 @@ const SellingProcessPage = () => {
                     <div>
                       <h3 className="font-semibold mb-2">Do I need to pay Capital Gains Tax when selling my property?</h3>
                       <p className="text-gray-600">
-                        If the property is your main residence, you typically won't pay Capital Gains Tax (CGT) under Private Residence Relief. However, if you're selling a second home or investment property, CGT may apply on the profit made. The amount depends on your income tax band and any available exemptions. We recommend consulting with a tax advisor for personalized advice.
+                        If the property is your main residence, you typically won't pay Capital Gains Tax (CGT) under Private Residence Relief. However, if you're selling a second home or investment property, CGT may apply on the profit made. The amount depends on your income tax band and any available exemptions. We recommend consulting with a tax advisor for personalised advice.
                       </p>
                     </div>
                   </div>
