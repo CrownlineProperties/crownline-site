@@ -7,7 +7,6 @@ export default {
         navy: '#0A0F2D',
         offwhite: '#F4F5F7',
         gold: '#E7B10A',
-        brandGold: '#D4AF37',
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
