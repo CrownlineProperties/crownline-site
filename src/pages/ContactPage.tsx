@@ -26,8 +26,8 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Our Office</h3>
                     <p className="text-gray-600">
-                      60 Gray's Inn Road<br />
-                      London WC1X 8LU<br />
+                      45 Broad Lane<br />
+                      London N15 4DJ<br />
                       United Kingdom
                     </p>
                   </div>
@@ -39,7 +39,7 @@ const ContactPage = () => {
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <p className="text-gray-600">
                       <a href="tel:02038878100" className="hover:text-gold transition duration-300">
-                        020 3887 8100
+                        020 3489 2040
                       </a>
                     </p>
                   </div>
@@ -51,7 +51,7 @@ const ContactPage = () => {
                     <h3 className="font-semibold mb-1">Email</h3>
                     <p className="text-gray-600">
                       <a href="mailto:info@crownline.co.uk" className="hover:text-gold transition duration-300">
-                        info@crownline.co.uk
+                        info@crownlineproperties.co.uk
                       </a>
                     </p>
                     <ul className="mt-2 text-sm text-gray-600">
