@@ -110,17 +110,28 @@ export const propertyService = {
       console.log('Update data:', property);
       
       // First check if the property exists
-      const existingProperty = await this.getProperty(id);
-      if (!existingProperty) {
+      const { data: existingData, error: fetchError } = await supabase
+        .from('properties')
+        .select('id')
+        .eq('id', id)
+        .maybeSingle();
+      
+      if (fetchError) {
+        console.error('Error checking property existence:', fetchError);
+        throw new Error('Failed to verify property exists: ' + fetchError.message);
+      }
+      
+      if (!existingData) {
         throw new Error(`Property with ID ${id} not found`);
       }
       
+      // Now perform the update
       const { data, error } = await supabase
         .from('properties')
         .update(property)
         .eq('id', id)
         .select()
-        .single();
+        .maybeSingle(); // Use maybeSingle to handle edge cases
 
       if (error) {
         console.error('Error updating property:', error);
@@ -128,7 +139,7 @@ export const propertyService = {
       }
       
       if (!data) {
-        throw new Error('No data returned after update');
+        throw new Error('No data returned after update - property may not exist');
       }
       
       console.log('Updated property:', data);
@@ -144,8 +155,18 @@ export const propertyService = {
       console.log('Deleting property with ID:', id);
       
       // First check if the property exists
-      const existingProperty = await this.getProperty(id);
-      if (!existingProperty) {
+      const { data: existingData, error: fetchError } = await supabase
+        .from('properties')
+        .select('id')
+        .eq('id', id)
+        .maybeSingle();
+      
+      if (fetchError) {
+        console.error('Error checking property existence:', fetchError);
+        throw new Error('Failed to verify property exists: ' + fetchError.message);
+      }
+      
+      if (!existingData) {
         throw new Error(`Property with ID ${id} not found`);
       }
       

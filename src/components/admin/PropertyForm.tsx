@@ -89,6 +89,31 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
         return;
       }
 
+      // Validate required fields
+      if (!formData.title.trim()) {
+        setError('Property title is required');
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.slug.trim()) {
+        setError('URL slug is required');
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.area.trim()) {
+        setError('Area is required');
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.description.trim()) {
+        setError('Description is required');
+        setLoading(false);
+        return;
+      }
+
       // Clean up data
       const cleanData = {
         ...formData,
@@ -185,6 +210,12 @@ const PropertyForm = ({ propertyId, isEdit = false }: PropertyFormProps) => {
       {error && (
         <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
           {error}
+          <button 
+            onClick={() => setError(null)}
+            className="ml-2 text-red-800 hover:text-red-900"
+          >
+            ×
+          </button>
         </div>
       )}
 
