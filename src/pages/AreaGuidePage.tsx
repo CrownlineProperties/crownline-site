@@ -17,7 +17,7 @@ const areas: AreaInfo[] = [
   {
     name: 'Canary Wharf',
     description: 'A major business district with modern high-rise apartments, excellent amenities, and river views. Popular with professionals working in finance and business.',
-    image: 'https://images.pexels.com/photos/2310895/pexels-photo-2310895.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    image: 'https://images.pexels.com/photos/351264/pexels-photo-351264.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averagePrice: '£600,000 - £1,500,000',
     averageRent: '£1,800 - £3,500 pcm',
     transport: ['Jubilee Line', 'DLR', 'Elizabeth Line', 'Thames Clipper'],
