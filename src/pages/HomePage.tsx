@@ -89,7 +89,7 @@ const HomePage = () => {
               <Building2 size={48} className="text-gold mb-4" />
               <h3 className="text-xl font-semibold mb-2">Central-London Expertise</h3>
               <p className="text-gray-600">
-                Specialized knowledge of prime London locations and property markets.
+                Specialised knowledge of prime London locations and property markets.
               </p>
             </div>
             <div className="card text-center flex flex-col items-center">
@@ -135,7 +135,7 @@ const HomePage = () => {
                 <h3 className="text-xl font-semibold">One point of contact</h3>
               </div>
               <p className="text-gray-600">
-                Your dedicated agent will guide you through the entire process, ensuring personalized service at every step.
+                Your dedicated agent will guide you through the entire process, ensuring personalised service at every step.
               </p>
             </div>
           </div>
@@ -260,8 +260,8 @@ const HomePage = () => {
               <div className="flex items-start mb-4">
                 <MapPin className="text-gold mt-1 mr-3 flex-shrink-0" />
                 <p className="text-gray-700">
-                  60 Gray's Inn Road<br />
-                  London WC1X 8LU
+                  45 Broad Lane<br />
+                  London N15 4DJ
                 </p>
               </div>
               <div className="flex items-center mb-4">
@@ -276,7 +276,7 @@ const HomePage = () => {
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <p className="text-gray-700">
-                  020 3887 8100
+                  020 3489 2040
                 </p>
               </div>
               <div className="flex items-center">
@@ -292,7 +292,7 @@ const HomePage = () => {
                   <path d="M22 6l-10 7L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <p className="text-gray-700">
-                  info@crownline.co.uk
+                  info@crownlineproperties.co.uk
                 </p>
               </div>
             </div>
