@@ -118,6 +118,10 @@ const Footer = () => {
               Privacy Policy
             </Link>
             <span className="text-gray-500 text-xs">•</span>
+            <Link to="/data-protection" className="text-gray-500 hover:text-gold text-xs transition duration-300">
+              Cookie Policy
+            </Link>
+            <span className="text-gray-500 text-xs">•</span>
             <span className="text-gray-500 text-xs">
               This website is for demonstration purposes only. All property listings are fictional.
             </span>
