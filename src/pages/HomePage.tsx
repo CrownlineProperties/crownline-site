@@ -160,7 +160,7 @@ const HomePage = () => {
               <Clock size={40} className="text-gold mb-4" />
               <h3 className="text-xl font-semibold mb-2">4-Hour Response</h3>
               <p className="text-gray-300">
-                Maintenance issues addressed within 5 hours, guaranteed.
+                Maintenance issues addressed within 4 hours, guaranteed.
               </p>
             </div>
             
