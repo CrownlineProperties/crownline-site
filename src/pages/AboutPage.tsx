@@ -9,7 +9,7 @@ const AboutPage = () => {
       <Hero
         title="About Crownline Properties"
         subtitle="London's dedicated property partner for overseas landlords and investors"
-        backgroundImage="https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        backgroundImage="https://images.pexels.com/photos/28707997/pexels-photo-28707997.jpeg"
         fullHeight={false}
       />
 
