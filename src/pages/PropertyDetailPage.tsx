@@ -66,6 +66,26 @@ const PropertyDetailPage = () => {
     swiperContainer.initialize();
   }, [property]);
 
+  const handleCall = () => {
+    window.location.href = 'tel:02034892040';
+  };
+
+  const handleEmail = () => {
+    const subject = encodeURIComponent(`Inquiry about ${property?.title || 'Property'}`);
+    const body = encodeURIComponent(`Hi,
+
+I am interested in the following property:
+${property?.title || 'Property'}
+Location: ${property?.area || 'N/A'}
+Price: ${property ? formatPrice(property.price, property.listing_type) : 'N/A'}
+
+Please contact me to discuss this property further.
+
+Best regards`);
+    
+    window.location.href = `mailto:info@crownlineproperties.co.uk?subject=${subject}&body=${body}`;
+  };
+
   if (loading) {
     return (
       <div className="container-custom py-32 text-center">
@@ -132,11 +152,11 @@ const PropertyDetailPage = () => {
           </div>
           <div className="mt-4 md:mt-0">
             <div className="flex space-x-4">
-              <Button variant="primary">
+              <Button variant="primary" onClick={handleCall}>
                 <Phone size={16} className="mr-2" />
                 Call
               </Button>
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleEmail}>
                 <Mail size={16} className="mr-2" />
                 Email
               </Button>
