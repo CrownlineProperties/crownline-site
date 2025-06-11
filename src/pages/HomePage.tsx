@@ -70,7 +70,12 @@ const HomePage = () => {
         backgroundImage="https://images.pexels.com/photos/409127/pexels-photo-409127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         buttons={[
           { text: 'I want to buy or sell', href: '/buy', variant: 'primary' },
-          { text: 'Get a rental valuation', href: '#', variant: 'secondary' },
+          { 
+            text: 'Get a rental valuation', 
+            href: '#',
+            variant: 'secondary',
+            onClick: openValuationModal
+          },
         ]}
       />
 
