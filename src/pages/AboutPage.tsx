@@ -20,7 +20,7 @@ const AboutPage = () => {
             <div>
               <h2 className="section-title">Our Story</h2>
               <p className="text-lg text-gray-700 mb-6">
-                Founded in 2017, Crownline Properties has rapidly established itself as a trusted name in London's property market, particularly for international investors and landlords seeking a reliable partner for their UK property investments.
+                Founded in 2016, Crownline Properties has rapidly established itself as a trusted name in London's property market, particularly for international investors and landlords seeking a reliable partner for their UK property investments.
               </p>
               <p className="text-lg text-gray-700 mb-6">
                 Our journey began when our founder, Henry Abiodun Okunbolade, identified a gap in the market for property services that truly understood the unique needs of overseas investors. Having experienced the challenges firsthand as an international property owner, Henry built Crownline with a clear mission: to make London property investment accessible, transparent, and rewarding for clients around the world.
