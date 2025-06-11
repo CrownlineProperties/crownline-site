@@ -96,13 +96,6 @@ const AdminDashboardPage = () => {
                 {loading ? 'Signing in...' : 'Access Admin Panel'}
               </Button>
             </form>
-
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h3 className="text-sm font-semibold mb-2">Demo Password:</h3>
-              <p className="text-sm text-gray-600">
-                Password: admin123
-              </p>
-            </div>
           </div>
 
           <div className="text-center">

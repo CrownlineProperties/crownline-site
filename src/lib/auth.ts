@@ -7,8 +7,8 @@ export interface AdminUser {
 export const adminAuth = {
   async signIn(password: string): Promise<{ user: AdminUser | null; error: string | null }> {
     try {
-      // Simple password check for demo - just like your previous working site
-      if (password === 'admin123') {
+      // Updated password check
+      if (password === 'CrownlineKing2024$') {
         const user: AdminUser = {
           id: '1',
           email: 'admin@crownlineproperties.co.uk',
