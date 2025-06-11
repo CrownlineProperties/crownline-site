@@ -65,7 +65,7 @@ const HomePage = () => {
     <div>
       {/* Hero Section */}
       <Hero
-        title="sdsdsdsd dsdsdsd sdsdsdsd"
+        title="London's Best property partner for overseas landlords and investors."
         subtitle="Buy. Sell. Rent. Manage. All of it made easy with Crownline."
         backgroundImage="https://images.pexels.com/photos/409127/pexels-photo-409127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         buttons={[
