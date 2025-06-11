@@ -118,7 +118,7 @@ const AboutPage = () => {
             <div className="card text-center">
               <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <img 
-                  src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                  src="https://images.pexels.com/photos/3783585/pexels-photo-3783585.jpeg" 
                   alt="James Chen - Founder & CEO" 
                   className="w-full h-full object-cover"
                 />
