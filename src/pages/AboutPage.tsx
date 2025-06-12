@@ -118,7 +118,7 @@ const AboutPage = () => {
             <div className="card text-center">
               <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
                 <img 
-                  src="https://cdn.crownlineproperties.co.uk/Canary%20Wharf%20JPG/Screenshot%202025-06-11%20at%2014.30.43.png" 
+                  src="https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                   alt="James Chen - Founder & CEO" 
                   className="w-full h-full object-cover"
                 />
