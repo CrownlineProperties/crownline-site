@@ -190,65 +190,35 @@
     --stop-5: 85.76%;
   }
 
-  /* Alternative outline button style */
-  .gradient-button-outline {
-    @apply relative appearance-none cursor-pointer;
-    background: transparent;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    transition: all 0.5s ease;
+  .gradient-button-variant {
+    --color-1: #D4AF37;
+    --color-2: #E6C547;
+    --color-3: #F2D757;
+    --color-4: #0A0F2D;
+    --color-5: #1a2040;
+    --border-angle: 200deg;
+    --border-color-1: hsla(45, 75%, 90%, 0.6);
+    --border-color-2: hsla(45, 50%, 90%, 0.15);
   }
 
-  .gradient-button-outline::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(
-      45deg,
-      #D4AF37,
-      #E6C547,
-      #F2D757,
-      #D4AF37
-    );
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-    z-index: -1;
-  }
-
-  .gradient-button-outline::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: inherit;
-    backdrop-filter: blur(10px);
-    z-index: -1;
-  }
-
-  .gradient-button-outline:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-  }
-
-  .gradient-button-outline:hover::before {
-    animation-duration: 1s;
-  }
-
-  .gradient-button-outline:hover::after {
-    background: rgba(212, 175, 55, 0.1);
-  }
-
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  .gradient-button-variant:hover {
+    --pos-x: 0%;
+    --pos-y: 95.51%;
+    --spread-x: 110.24%;
+    --spread-y: 110.2%;
+    --color-1: #0A0F2D;
+    --color-2: #1a2040;
+    --color-3: #D4AF37;
+    --color-4: #E6C547;
+    --color-5: #F2D757;
+    --stop-1: 0%;
+    --stop-2: 10%;
+    --stop-3: 35.44%;
+    --stop-4: 71.34%;
+    --stop-5: 90.76%;
+    --border-angle: 210deg;
+    --border-color-1: hsla(45, 75%, 90%, 0.3);
+    --border-color-2: hsla(45, 50%, 90%, 0.8);
   }
 
   .container-custom {
