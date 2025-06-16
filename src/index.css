@@ -29,31 +29,31 @@
 
   @property --color-1 {
     syntax: '<color>';
-    initial-value: #000;
+    initial-value: #0A0F2D;
     inherits: false;
   }
 
   @property --color-2 {
     syntax: '<color>';
-    initial-value: #08012c;
+    initial-value: #1a2040;
     inherits: false;
   }
 
   @property --color-3 {
     syntax: '<color>';
-    initial-value: #4e1e40;
+    initial-value: #2a3050;
     inherits: false;
   }
 
   @property --color-4 {
     syntax: '<color>';
-    initial-value: #70464e;
+    initial-value: #3a4060;
     inherits: false;
   }
 
   @property --color-5 {
     syntax: '<color>';
-    initial-value: #88394c;
+    initial-value: #4a5070;
     inherits: false;
   }
 
@@ -65,13 +65,13 @@
 
   @property --border-color-1 {
     syntax: '<color>';
-    initial-value: hsla(340, 75%, 60%, 0.2);
+    initial-value: hsla(45, 75%, 60%, 0.3);
     inherits: true;
   }
 
   @property --border-color-2 {
     syntax: '<color>';
-    initial-value: hsla(340, 75%, 40%, 0.75);
+    initial-value: hsla(45, 75%, 50%, 0.8);
     inherits: true;
   }
 
@@ -175,14 +175,14 @@
     --pos-y: 91.51%;
     --spread-x: 120.24%;
     --spread-y: 103.18%;
-    --color-1: #c96287;
-    --color-2: #c66c64;
-    --color-3: #cc7d23;
-    --color-4: #37140a;
+    --color-1: #D4AF37;
+    --color-2: #E6C547;
+    --color-3: #F2D757;
+    --color-4: #0A0F2D;
     --color-5: #000;
     --border-angle: 190deg;
-    --border-color-1: hsla(340, 78%, 90%, 0.1);
-    --border-color-2: hsla(340, 75%, 90%, 0.6);
+    --border-color-1: hsla(45, 78%, 90%, 0.2);
+    --border-color-2: hsla(45, 75%, 90%, 0.7);
     --stop-1: 0%;
     --stop-2: 8.8%;
     --stop-3: 21.44%;
@@ -191,13 +191,14 @@
   }
 
   .gradient-button-variant {
-    --color-1: #000022;
-    --color-2: #1f3f6d;
-    --color-3: #469396;
-    --color-4: #f1ffa5;
+    --color-1: #D4AF37;
+    --color-2: #E6C547;
+    --color-3: #F2D757;
+    --color-4: #0A0F2D;
+    --color-5: #1a2040;
     --border-angle: 200deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.6);
-    --border-color-2: hsla(320, 50%, 90%, 0.15);
+    --border-color-1: hsla(45, 75%, 90%, 0.6);
+    --border-color-2: hsla(45, 50%, 90%, 0.15);
   }
 
   .gradient-button-variant:hover {
@@ -205,19 +206,19 @@
     --pos-y: 95.51%;
     --spread-x: 110.24%;
     --spread-y: 110.2%;
-    --color-1: #000020;
-    --color-2: #f1ffa5;
-    --color-3: #469396;
-    --color-4: #1f3f6d;
-    --color-5: #000;
+    --color-1: #0A0F2D;
+    --color-2: #1a2040;
+    --color-3: #D4AF37;
+    --color-4: #E6C547;
+    --color-5: #F2D757;
     --stop-1: 0%;
     --stop-2: 10%;
     --stop-3: 35.44%;
     --stop-4: 71.34%;
     --stop-5: 90.76%;
     --border-angle: 210deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.2);
-    --border-color-2: hsla(320, 50%, 90%, 0.75);
+    --border-color-1: hsla(45, 75%, 90%, 0.3);
+    --border-color-2: hsla(45, 50%, 90%, 0.8);
   }
 
   .container-custom {
