@@ -22,12 +22,17 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
 
   return (
     <div className="card group overflow-hidden transition-all duration-300 hover:shadow-md">
-      {/* Image container */}
-      <div className="relative h-56 -mx-6 -mt-6 mb-4 overflow-hidden">
+      {/* Image container with improved sizing */}
+      <div className="relative h-64 -mx-6 -mt-6 mb-4 overflow-hidden">
         <img 
           src={thumb} 
           alt={title} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+          }}
         />
         <div className="absolute top-3 left-3">
           <span className="bg-navy text-white text-xs px-3 py-1 rounded-full uppercase">

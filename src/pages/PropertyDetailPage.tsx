@@ -61,6 +61,7 @@ const PropertyDetailPage = () => {
       pagination: {
         clickable: true,
       },
+      loop: property.gallery && property.gallery.length > 1,
     });
     
     swiperContainer.initialize();
@@ -189,29 +190,54 @@ Best regards`);
         </div>
       )}
 
-      {/* Property Gallery */}
+      {/* Property Gallery - Enhanced for full-size images */}
       <div className="container-custom mb-12">
         <div className="bg-gray-100 rounded-property overflow-hidden">
-          <swiper-container ref={swiperRef} init="false" class="h-[300px] md:h-[500px]">
+          <swiper-container ref={swiperRef} init="false" class="h-[400px] md:h-[600px] lg:h-[700px]">
             {gallery && gallery.length > 0 ? gallery.map((image, index) => (
               <swiper-slide key={index}>
-                <img
-                  src={image}
-                  alt={`${title} - image ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                <div className="w-full h-full relative">
+                  <img
+                    src={image}
+                    alt={`${title} - image ${index + 1}`}
+                    className="w-full h-full object-cover cursor-pointer"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    onClick={() => {
+                      // Open image in new tab for full-size viewing
+                      window.open(image, '_blank');
+                    }}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+                    }}
+                  />
+                  {/* Click indicator */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3">
+                      <ExternalLink size={24} className="text-navy" />
+                    </div>
+                  </div>
+                </div>
               </swiper-slide>
             )) : (
               <swiper-slide>
-                <img
-                  src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt={title}
-                  className="w-full h-full object-cover"
-                />
+                <div className="w-full h-full relative">
+                  <img
+                    src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt={title}
+                    className="w-full h-full object-cover cursor-pointer"
+                    onClick={() => {
+                      window.open('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', '_blank');
+                    }}
+                  />
+                </div>
               </swiper-slide>
             )}
           </swiper-container>
         </div>
+        <p className="text-sm text-gray-500 mt-2 text-center">
+          Click on any image to view it in full size
+        </p>
       </div>
 
       {/* Property Content */}
