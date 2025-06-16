@@ -23,7 +23,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   return (
     <div className="card group overflow-hidden transition-all duration-300 hover:shadow-md">
       {/* Image container with improved sizing */}
-      <div className="relative h-64 -mx-6 -mt-6 mb-4 overflow-hidden">
+      <div className="relative h-72 -mx-6 -mt-6 mb-4 overflow-hidden">
         <img 
           src={thumb} 
           alt={title} 

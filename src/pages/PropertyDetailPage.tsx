@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail, ExternalLink } from 'lucide-react';
+import { MapPin, Home, Bed, Bath, Maximize, Calendar, ArrowLeft, Phone, Mail, ExternalLink, Expand } from 'lucide-react';
 import Button from '../components/ui/Button';
 import PropertyInquiryForm from '../components/ui/PropertyInquiryForm';
 import GoogleMap from '../components/ui/GoogleMap';
+import ImageModal from '../components/ui/ImageModal';
 import { PropertyData, propertyService } from '../lib/properties';
 import { formatPrice } from '../utils/formatters';
 import { register } from 'swiper/element/bundle';
@@ -15,6 +16,8 @@ const PropertyDetailPage = () => {
   const [property, setProperty] = useState<PropertyData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const swiperRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -87,6 +90,31 @@ Best regards`);
     window.location.href = `mailto:info@crownlineproperties.co.uk?subject=${subject}&body=${body}`;
   };
 
+  const openImageModal = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+  };
+
+  const goToPreviousImage = () => {
+    if (property?.gallery) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? property.gallery.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const goToNextImage = () => {
+    if (property?.gallery) {
+      setCurrentImageIndex((prev) => 
+        prev === property.gallery.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
   if (loading) {
     return (
       <div className="container-custom py-32 text-center">
@@ -124,6 +152,10 @@ Best regards`);
     furnished,
     rightmove_url,
   } = property;
+
+  const propertyImages = gallery && gallery.length > 0 ? gallery : [
+    'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  ];
 
   return (
     <div className="pt-20 pb-16">
@@ -190,50 +222,43 @@ Best regards`);
         </div>
       )}
 
-      {/* Property Gallery - Enhanced for full-size images */}
+      {/* Property Gallery - Enhanced with modal */}
       <div className="container-custom mb-12">
-        <div className="bg-gray-100 rounded-property overflow-hidden">
+        <div className="bg-gray-100 rounded-property overflow-hidden relative">
           <swiper-container ref={swiperRef} init="false" class="h-[400px] md:h-[600px] lg:h-[700px]">
-            {gallery && gallery.length > 0 ? gallery.map((image, index) => (
+            {propertyImages.map((image, index) => (
               <swiper-slide key={index}>
-                <div className="w-full h-full relative">
+                <div className="w-full h-full relative group">
                   <img
                     src={image}
                     alt={`${title} - image ${index + 1}`}
                     className="w-full h-full object-cover cursor-pointer"
                     loading={index === 0 ? 'eager' : 'lazy'}
-                    onClick={() => {
-                      // Open image in new tab for full-size viewing
-                      window.open(image, '_blank');
-                    }}
+                    onClick={() => openImageModal(index)}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
                     }}
                   />
-                  {/* Click indicator */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3">
-                      <ExternalLink size={24} className="text-navy" />
+                  {/* Expand overlay */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3">
+                      <Expand size={24} className="text-navy" />
                     </div>
                   </div>
                 </div>
               </swiper-slide>
-            )) : (
-              <swiper-slide>
-                <div className="w-full h-full relative">
-                  <img
-                    src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    alt={title}
-                    className="w-full h-full object-cover cursor-pointer"
-                    onClick={() => {
-                      window.open('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', '_blank');
-                    }}
-                  />
-                </div>
-              </swiper-slide>
-            )}
+            ))}
           </swiper-container>
+          
+          {/* View all photos button */}
+          <button
+            onClick={() => openImageModal(0)}
+            className="absolute bottom-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-navy px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center"
+          >
+            <Expand size={16} className="mr-2" />
+            View All Photos ({propertyImages.length})
+          </button>
         </div>
         <p className="text-sm text-gray-500 mt-2 text-center">
           Click on any image to view it in full size
@@ -354,6 +379,17 @@ Best regards`);
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={closeImageModal}
+        images={propertyImages}
+        currentIndex={currentImageIndex}
+        onPrevious={goToPreviousImage}
+        onNext={goToNextImage}
+        title={title}
+      />
     </div>
   );
 };
