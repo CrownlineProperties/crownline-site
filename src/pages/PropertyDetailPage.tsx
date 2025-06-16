@@ -190,13 +190,13 @@ Best regards`);
         </div>
       )}
 
-      {/* Property Gallery - Enhanced for mobile full-size viewing */}
+      {/* Property Gallery - Enhanced for full-size images */}
       <div className="container-custom mb-12">
         <div className="bg-gray-100 rounded-property overflow-hidden">
-          <swiper-container ref={swiperRef} init="false" class="h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[600px]">
+          <swiper-container ref={swiperRef} init="false" class="h-[400px] md:h-[600px] lg:h-[700px]">
             {gallery && gallery.length > 0 ? gallery.map((image, index) => (
               <swiper-slide key={index}>
-                <div className="w-full h-full relative group">
+                <div className="w-full h-full relative">
                   <img
                     src={image}
                     alt={`${title} - image ${index + 1}`}
@@ -211,21 +211,17 @@ Best regards`);
                       target.src = 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
                     }}
                   />
-                  {/* Click indicator overlay */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3 pointer-events-none">
+                  {/* Click indicator */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3">
                       <ExternalLink size={24} className="text-navy" />
                     </div>
-                  </div>
-                  {/* Mobile tap indicator */}
-                  <div className="absolute bottom-4 right-4 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded-full sm:hidden">
-                    Tap to enlarge
                   </div>
                 </div>
               </swiper-slide>
             )) : (
               <swiper-slide>
-                <div className="w-full h-full relative group">
+                <div className="w-full h-full relative">
                   <img
                     src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt={title}
@@ -234,17 +230,13 @@ Best regards`);
                       window.open('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', '_blank');
                     }}
                   />
-                  <div className="absolute bottom-4 right-4 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded-full sm:hidden">
-                    Tap to enlarge
-                  </div>
                 </div>
               </swiper-slide>
             )}
           </swiper-container>
         </div>
-        <p className="text-sm text-gray-500 mt-3 text-center">
-          <span className="hidden sm:inline">Click on any image to view it in full size</span>
-          <span className="sm:hidden">Tap on any image to view it in full size</span>
+        <p className="text-sm text-gray-500 mt-2 text-center">
+          Click on any image to view it in full size
         </p>
       </div>
 
