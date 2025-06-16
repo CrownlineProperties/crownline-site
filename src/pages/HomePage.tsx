@@ -67,7 +67,7 @@ const HomePage = () => {
       <Hero
         title="London's Best property partner for overseas landlords and investors."
         subtitle="Buy. Sell. Rent. Manage. All of it made easy with Crownline."
-        backgroundImage="https://cdn.crownlineproperties.co.uk/website%20pictures/cornwline%20hero%201.jpg"
+        backgroundImage="https://cdn.crownlineproperties.co.uk/website%20pictures/crownline%20hero%202.jpg"
         buttons={[
           { text: 'I want to rent', href: '/rent', variant: 'primary' },
           { 
