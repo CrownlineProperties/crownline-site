@@ -153,10 +153,13 @@ Best regards`);
           </div>
           <div className="mt-4 md:mt-0">
             <div className="flex space-x-4">
-              <Button variant="primary" onClick={handleCall}>
+              <button 
+                onClick={handleCall}
+                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-property border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition duration-300"
+              >
                 <Phone size={16} className="mr-2" />
                 Call
-              </Button>
+              </button>
               <Button variant="secondary" onClick={handleEmail}>
                 <Mail size={16} className="mr-2" />
                 Email
