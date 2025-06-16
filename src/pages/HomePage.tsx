@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Building2, Shield, Globe, Clock, Star, MapPin } from 'lucide-react';
 import Hero from '../components/ui/Hero';
 import Button from '../components/ui/Button';
+import { GradientButton } from '../components/ui/gradient-button';
 import PropertyGrid from '../components/ui/PropertyGrid';
 import TestimonialCarousel from '../components/ui/TestimonialCarousel';
 import ValuationModal from '../components/ui/ValuationModal';
@@ -64,20 +65,30 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <Hero
-        title="London's Best property partner for overseas landlords and investors."
-        subtitle="Buy. Sell. Rent. Manage. All of it made easy with Crownline."
-        backgroundImage="https://cdn.crownlineproperties.co.uk/website%20pictures/crownline%20hero%202.jpg"
-        buttons={[
-          { text: 'I want to rent', href: '/rent', variant: 'primary' },
-          { 
-            text: 'Get a rental valuation', 
-            href: '#',
-            variant: 'secondary',
-            onClick: openValuationModal
-          },
-        ]}
-      />
+      <div
+        className="relative bg-cover bg-center bg-no-repeat pt-24 md:pt-28 min-h-[60vh]"
+        style={{ backgroundImage: `url(https://cdn.crownlineproperties.co.uk/website%20pictures/crownline%20hero%202.jpg)` }}
+      >
+        <div className="absolute inset-0 bg-navy bg-opacity-50"></div>
+        <div className="container-custom relative z-10 h-full flex items-center">
+          <div className="max-w-3xl py-16 text-white mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              London's Best property partner for overseas landlords and investors.
+            </h1>
+            <p className="text-lg md:text-xl opacity-90 mb-8">
+              Buy. Sell. Rent. Manage. All of it made easy with Crownline.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <GradientButton asChild>
+                <Link to="/rent">I want to rent</Link>
+              </GradientButton>
+              <GradientButton variant="variant" onClick={openValuationModal}>
+                Get a rental valuation
+              </GradientButton>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Key Badges Section */}
       <section className="section bg-white">
